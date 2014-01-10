@@ -1,0 +1,14 @@
+<div class="conRt_con <%= 'evencolor' if i%2 != 0%>">
+  <p class="conRt_p magB8"><a href="http://weibo.com/u/<%= user.sns_uid %>?from=profile" class="conRt_a" target="_blank">发送私信</a></p>
+
+  <% st = List.where("company_id = ? and  apply_info_id = ? and user_id = ?", @company.id, @apply.id, user.id).first %>
+
+
+  <% #0 入选， 1 未入选 %>
+
+  <% if !st.blank? && (st.status == 2 ||  st.status == 0)%>
+    <%= link_to "取消入选", manager_link("/admin/data/cancellist/#{user.id}"), remote: true, id: "add_del_#{user.id}" %>
+  <% else %>
+    <%= link_to "选取用户", manager_link("/admin/data/addlist/#{user.id}"), remote: true, id: "add_del_#{user.id}" %>
+  <% end %>
+</div>

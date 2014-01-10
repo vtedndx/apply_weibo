@@ -1,0 +1,60 @@
+<input type='hidden' value="0" id="memScrollTop" viewMiddleTop="120" />
+<script src="http://js.t.sinajs.cn/t4/enterprise/js/public/appframe/appClient.js" type="text/javascript"></script>
+<script type="text/javascript">
+  //每次滚动时，更新iframe父框架的scrolltop
+  //need "http://js.t.sinajs.cn/t4/enterprise/js/public/appframe/client.js?version="
+  //need "http://js.t.sinajs.cn/t4/enterprise/static/js/xIframeH.js"
+//弹出授权弹层：
+//弹出授权弹层：
+function authLoad(){
+  App.AuthDialog.show({
+       client_id : "<%= @company.sub_appkey %>",  //必选，appkey
+       redirect_uri : "http://e.weibo.com/<%= @company.cid %>/app_<%= SNS['appkey'] %>",  
+  //必选，授权回调地址，必须以http://e.weibo.com开头，类似http://e.weibo.com/1717871843/app_738247391
+  //或者http://e.weibo.com/thirdapp/app?appkey=738247391，不同企业应用的前台url是不固定的，需要用uid拼装
+  height: 100,    //可选，默认距顶端120px
+  display: 'apponweibo'  //必选，移动端H5授权则应为display: 'mobile'
+  });
+}
+
+
+  $(function(){
+    $(document).ready(function(){
+      FrameClient.addEvent('scroll', function(evt, data){
+        //alert(data.width); //iframe宽
+        //alert(data.height);//iframe高
+        //alert(data.top);//iframe距离页面最顶部距离
+        //alert(data.left);//iframe距离页面最左侧的距离 
+        //alert(data.scrollTop);//scrollTop（滚动条顶部距离），scrollLeft（滚动条左距离，一般为0）。
+        $('#memScrollTop').val(data.scrollTop);
+        var viewMiddleTop = parseInt(data.scrollTop) - parseInt(data.top) + 130; //得到浏览器往下20px的地方 的高度(与子页面的body上边距离)
+        if (viewMiddleTop < 0){
+            viewMiddleTop = 10;
+        }
+
+        $('#memScrollTop').attr('viewMiddleTop', viewMiddleTop);
+
+      }); 
+    });
+
+    <% if @user.blank? || !@user.token_valid?%> 
+      authLoad();
+      createShadow();
+    <% end %>
+  });
+
+   // FrameClient.sendMessage({scrollTop:theTop,inner:true});
+
+  function openSnsConnect() {
+    //str was not use
+    var theTop = parseInt($('#memScrollTop').attr('viewMiddleTop')) ;
+    var topstr = theTop + 20 + "px";
+    var url = "https://api.weibo.com/oauth2/authorize?client_id=<%= SNS['appkey'] %>&redirect_uri=<%= URI.escape(SNS['re_url']) %>&response_type=code";
+    login(url,topstr);
+    createShadow();
+  }
+
+</script>
+<style>
+#authDiv {z-index:7700;}
+</style>

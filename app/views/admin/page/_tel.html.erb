@@ -1,0 +1,20 @@
+<div class="requisitionModel J_tel" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="tel"/>
+	<input type="hidden" name="list[<%= id%>]must" id="<%= id%>_must" value="<%= hash.blank? ? 0 : hash["must"]%>"/>
+	<input type="hidden" name="list[<%= id%>]title" value="手机"/>
+	<p class="requisitionLabel_text text_color">手机：</p>
+	<label class="requisitionLabel">
+		<input type="text" class="requisitionName input_text" />
+	</label>
+	<% if hash.blank? || hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% else %>
+		<span class="required" style="display: none;">*</span>
+	<% end %>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_must/#{id}?type=tel&must=#{hash.blank? ? 0 : hash["must"]}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_tel">编辑</a>
+	</div>
+</div>

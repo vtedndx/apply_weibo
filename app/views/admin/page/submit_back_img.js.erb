@@ -1,0 +1,11 @@
+var showstyle = "<%= @apply.get_config(:img_show)%>";
+var adminMain = $(".adminMain");
+var adminMainbgimg = $("#back_img");
+if(showstyle=="0"){//拉伸
+  adminMain.attr('style','')
+  adminMainbgimg.show().attr("src", adminMainbgimg.attr("src"));
+}else if(showstyle=="1"){//平铺
+  adminMainbgimg.hide();
+  adminMain.css({'background-image':adminMainbgimg.attr("src")});
+}
+close_easy_dialog();

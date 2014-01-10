@@ -1,0 +1,179 @@
+#encoding: utf-8
+<div class="adminBox">
+  <div class="adminBox_tp">
+    <%= link_to "导出用户名单", manager_link("/admin/data/out_xls.xls?names_cn=#{@names_cn}&names=#{@names}"), class: "adminBox_tp_rt adminRight" %>
+  </div><!--adminbox_tp end-->
+  <%= render '/admin/data/info' %>
+  <div class="adminContain_con pdB210">
+
+    <div class="adminContain_conLt"> 
+      <div class="conLt_top">微博ID</div>
+        <% unless @pis.blank? %>
+          <% @pis.each_with_index do |pi, i| %>
+            <%= render partial: '/admin/data/id', locals: { user: pi.user, i: i } %>
+          <% end %>
+        <% end %>
+    </div>
+
+    <div class="adminContain_conMid"> 
+      <div class="adminTab">
+        <%= render partial: '/admin/data/detail' %>
+        <% unless @pis.blank? %>
+          <% @pis.each_with_index do |pi, i| %>
+            <%= render partial: '/admin/data/form_info', locals: { post: pi, i: i } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="adminContain_conRt">
+      <div class="conLt_top">操作</div>
+        <% unless @pis.blank? %>
+          <% @pis.each_with_index do |pi, i| %>
+            <%= render partial: '/admin/data/action', locals: { user: pi.user, i: i } %>
+          <% end %>
+        <% end %>
+    </div>
+    <div class="clearBoth"></div>
+    <% if @pis.blank?%><p class="adminContain_con_p">暂无数据哦！</p><% end %>
+  </div>
+  <% if @user_ids%>
+    <%= paginate @user_ids%>
+  <% end %>
+</div>
+ <script type="text/javascript">
+   $(function(){ 
+      var navbox=$('.adminContain_conMid_tit'),navboxparent=navbox.parent(),navboxli=navbox.find('li'),navboxliwidth=navboxli.width(),navboxlilength=navboxli.length;
+    if(navboxlilength>5){
+      
+    navboxparent.css('width',navboxliwidth*navboxlilength);
+    newnavboxparentheight=navboxparent.height();
+    navboxparent.parent().height(newnavboxparentheight-3);
+    navboxparent.height(newnavboxparentheight-20);
+    }
+  })
+ </script>
+<div id="pop_fan_card" class="pop_fan_card pop_fan_card" >
+<input id="tmp_current_div" value="" style="display:none;"/>
+	<div class="fan_card">
+	<div class="pop_bg"></div>
+   <div class="circle_triangle">
+    	<span class="triangle_top"></span>
+        <span class="triangle_middle"></span>
+        <span class="triangle_bottom"></span>
+    </div>
+    <div id="fan_card_content1" class="fan_card_content">
+    	<dl>
+        	<dt><img id="sns_img" src="" /></dt>
+            <dd>
+            	<div class="fan_card_info_div fan_card_info_name" ><a href="javascript:void(0);" id="sns_uname"></a><span class="fanscareIcon fanscareIcon_next_lanV"></span></div>
+                <div class="fan_card_info_div" id="addr"><span class="fanscareIcon fanscareIcon_next_customer mr5"></span></div>
+                <div class="fan_card_info_div">
+                	<ul>
+                    	<li><a href="javascript:void(0);" id="attention">关注</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="javascript:void(0);" id="fans">粉丝</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="javascript:void(0);" id="weibo">微博</a></li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <ul class="fan_card_info_ul">
+          <li id="desp"><span>简介：</span></li>
+          <li id="tag"><span>标签：</span></li>
+          <li id="remark"><span>备注：</span></li>
+        </ul>
+        <div class="hor_line"></div>
+
+    </div><!--fan_card_content1-->
+    </div>
+    <input id="tmp_current_div" value="" style="display:none;"/>
+</div><!--pop_fan_card-->
+
+<script type="text/javascript">
+/*粉丝名片*/
+  var x=30,y=1;
+  function Funcard(id){
+    className1 = $('.users_card');
+    className2 = $('.pop_fan_card');
+    className1.mouseover(function(e){
+      var datacontentid=$(this).attr('data_content_id');
+      $('#tmp_current_div').attr('value',datacontentid);
+      var className2Height=className2.height();
+      var dynamicHeight=e.pageY+className2Height;
+      var bodyHeight=$('body').height();
+
+      if(bodyHeight<dynamicHeight){
+        $('#pop_fan_card .circle_triangle').attr('class','circle_triangle_down');
+
+        $("#sns_img").attr("src", $("#sns_uimg_"+id).val());
+        //$("#sns_uname").html($("#sns_uname_"+id).val());
+
+        $("#sns_uname").html('<a href="http://weibo.com/u/' + $("#sns_uid_"+id).val() + '?from=profile" target="_blank">'+$("#sns_uname_"+id).val() + '</a>');
+          
+        $("#addr").html('<span class="fanscareIcon fanscareIcon_next_customer mr5"></span>'+$("#location_"+id).val());
+        $("#attention").html('<a href="javascript:void(0);">关注</a>'+$("#friends_"+id).val());
+        $("#fans").html('<a href="javascript:void(0);">粉丝</a>'+$("#fans_"+id).val());
+        $("#weibo").html('<a href="javascript:void(0);">微博</a>'+$("#statuses_"+id).val());
+        $("#desp").html('<span>简介：</span>'+$("#description_"+id).val());
+        $("#tag").html('<span>标签：</span>'+$("#tag_"+id).val());
+        $("#remark").html('<span>备注：</span>'+$("#remark_"+id).val());
+
+        // $("#"+obj[0].id).val();
+        className2.css({
+          'display':'block',
+          "top": (e.pageY-className2Height-10) + "px",
+          "left":  (e.pageX-x)  + "px"
+        
+        }); 
+      }else{
+        $('#pop_fan_card .circle_triangle_down').attr('class','circle_triangle');
+
+        $("#sns_img").attr("src", $("#sns_uimg_"+id).val());
+        //$("#sns_uname").html($("#sns_uname_"+id).val());
+        $("#addr").html('<span class="fanscareIcon fanscareIcon_next_customer mr5"></span>'+$("#location_"+id).val());
+        $("#attention").html('<a href="javascript:void(0);">关注</a>'+$("#friends_"+id).val());
+        $("#fans").html('<a href="javascript:void(0);">粉丝</a>'+$("#fans_"+id).val());
+        $("#weibo").html('<a href="javascript:void(0);">微博</a>'+$("#statuses_"+id).val());
+        $("#desp").html('<span>简介：</span>'+$("#description_"+id).val());
+        $("#tag").html('<span>标签：</span>'+$("#tag_"+id).val());
+        $("#remark").html('<span>备注：</span>'+$("#remark_"+id).val());
+        $("#sns_uname").html('<a href="http://weibo.com/u/' + $("#sns_uid_"+id).val() + '?from=profile" target="_blank">'+$("#sns_uname_"+id).val() + '</a>');
+        className2.css({
+          'display':'block',
+          "top": (e.pageY+y) + "px",
+          "left":  (e.pageX-x)  + "px"
+        
+        }); 
+      }
+      
+      
+    
+    }).mouseout(function(){
+      className2.css({
+        'display':'none',
+        }); 
+    }).mousemove(function(e){
+      /*className2.css({
+        'display':'block',
+          "top": (e.pageY+y) + "px",
+          "left":  (e.pageX-x)  + "px"
+        }); */
+    });
+    className2.hover(function(){
+      className2.css('display','block');
+    },function(){
+      className2.css('display','none');
+    })
+  }
+</script>
+
+<script type="text/javascript">
+ /*鼠标点击显示隐藏*/
+$(function(){	
+	 $('.holderContent').holderContent();
+})
+</script>
+
+

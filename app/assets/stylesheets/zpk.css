@@ -1,0 +1,233 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*--------------后台申请单--------------*/
+.adminMain{ position:relative; width:760px; overflow:hidden;}
+.adminMain_bg{ margin-top:1px;}
+.adminMain_bg img{ max-width:760px; width:760px;}
+.requisition{ }
+
+/*申请单图标*/
+i{display:inline-block; background:url(/assets/icon_requisition.png) no-repeat;}
+.icon_small_gear{ width:13px; height:13px; background-position:-75px -101px; float:left; margin:6px -4px 0px 7px;}
+.icon_big_gear{ width:19px; height:19px; background-position:-89px -101px; margin:6px 0px 0px 10px;}
+.icon_vertical_lines{width:6px; height:12px; background-position:-132px -101px; margin:8px 10px 0px 15px;}
+.icon_display{width:8px; height:9px; background-position:-110px -101px; margin:9px 0px 0px 15px;}
+.icon_hide{width:8px; height:9px; background-position:-121px -101px; margin:9px 0px 0px -6px;}
+.icon_name{ width:12px; height:12px; background-position:-0px -130px;}
+.icon_gender{width:12px; height:12px; background-position:-14px -130px;}
+.icon_age{width:13px; height:12px; background-position:-27px -130px;}
+.icon_birthday{width:12px; height:12px; background-position:-44px -130px;}
+.icon_region{width:12px; height:12px; background-position:-58px -130px;}
+.icon_id_card{width:12px; height:12px; background-position:-74px -130px;}
+.icon_mail{width:12px; height:12px; background-position:-89px -130px;}
+.icon_phone{width:11px; height:12px; background-position:-101px  -130px;}
+.icon_attention{width:13px; height:12px; background-position:-112px  -130px;}
+.icon_share{width:12px; height:12px; background-position:-126px -130px;}
+.icon_writing{width:12px; height:12px; background-position:-139px -130px;}
+.icon_dividing_line{width:12px; height:12px; background-position:-0px -142px;}
+.icon_single_line_text{width:12px; height:12px; background-position:-14px -142px;}
+.icon_multi_line_text{width:12px; height:12px; background-position:-27px -146px;}
+.icon_check{width:16px; height:20px; background-position:-43px -146px;}
+.icon_radio{width:12px; height:12px; background-position:-60px -146px;}
+.icon_drop_down_box{width:14px; height:14px; background-position:-74px -147px;}
+.icon_image_upload{width:12px; height:12px; background-position:-89px -146px;}
+.icon_date{width:12px; height:12px; background-position:-103px  -146px;}
+.icon_requisition_button{ width:158px; height:53px; background-position:-0px -323px;} 
+.icon_move_model{ width:8px; height:15px; background-position:-127px -146px;}
+.icon_delete_model{ width:12px; height:12px; background-position:-140px -146px;}
+.icon_editor_model{ width:28px; height:20px; background-position:-110px -167px;}
+.icon_tab_nav{ width:47px; height:21px; background-position:-56px -167px;}
+.icon_tab_nav_selected{ width:47px; height:21px; background-position:-0px -167px;}
+
+/*更换背景图*/
+.icon_setting_bg{  background-position:0px 0px;}
+.adminSettingBg{width:96px; height:27px; line-height:27px; text-align:center; color:#FFF; font-weight:bold; float:right; margin:40px 20px 0px 0px; position:absolute; top:0px; right:0px; z-index:1001;}
+
+/*设置申请单*/
+.requisitionSetting{ width:156px; position:absolute; top:100px; right:0px; z-index:1001; }
+.requisitionSetting_top{ width:156px; height:31px; line-height:31px; margin-bottom:-4px;}
+.icon_setting_top{ background-position:-0px -34px;}
+.requisitionSetting_top i{ float:left;}
+.requisitionTitle{ display:inline-block; float:left; font-weight:bold; color:#FFF;}
+.icon_setting_content{ background-position:0px -72px; }
+.requisition_content{ background-color:#dbdbdb; border:1px solid #000000; border-radius:3px; box-shadow:-1px 1px  20px 2px #a5a5a5; }
+.requisition_content_title{ width:156px; height:24px; line-height:24px; color:#FFF; margin:-1px 0px 0px -1px; padding:0px 0px 0px 10px;}
+
+.requisition_setting_option{ overflow:hidden; margin-left:-3px; margin-top:5px;}
+.requisition_setting_option li{float:left; margin-left:6px; margin-bottom:5px;}
+.icon_setting_option_bg,.icon_setting_option_bg_hover,.icon_setting_option_bg_visited{width:71px; height:22px; line-height:22px;  cursor:pointer;}
+.icon_setting_option_bg{  background-position:-0px -102px;}
+.icon_setting_option_bg_hover{ background-position:-0px -232px;}
+.icon_setting_option_bg_visited{ background-position:-81px -232px; cursor:default;}
+.requisition_setting_option li i{margin:5px 4px; float:left;}
+.requisition_setting_option li .icon_check{ margin:3px;}
+.requisition_setting_option li .icon_drop_down_box{ margin:4px;}
+.icon_setting_option_custom{  background-position:-0px -258px; }
+.setting_option_custom{width:138px; height:22px; line-height:22px; color:#fff; padding:0px 0px 0px 10px; }
+
+/*申请单form*/
+.requisitionForm{ width:415px;  color:#010101; background-color:#e4e4e4; border-radius:10px; margin:10px auto; padding:10px 10px 100px 10px; position:relative;}
+.requisitionForm h3{ font-size:18px; text-align:center;}
+.requisitionForm select{height:28px; border:1px solid #a5acb2; background-color:#f4f4f4; padding:5px 10px;}
+
+.Explanatory{ position:absolute;}
+.Explanatory_text1{ top:863px; left:-120px;}
+.Explanatory_text2{ top:710px; left:-120px;}
+.Explanatory_text3{ top:810px; left:-120px;}
+.Explanatory_text4{ top:760px; left:-120px;}
+.Explanatory_text5{ top:1055px; left:-120px;}
+.Explanatory_text6{ top:1120px; left:-120px;}
+
+/*输入框*/
+.requisitionModel{ overflow:hidden; display:block; margin:0 10px; padding:3px 60px 10px; border:1px solid transparent; position:relative; }
+.requisitionLabel{ display:inline-block; margin-top:10px;}
+.requisitionLabel_text{ font-weight:bold; line-height:23px;}
+.input_text{ border:0px; width:250px; height:25px; line-height:30px; border-radius:5px; box-shadow:inset 0px 3px 4px #cfcfcf; padding:5px 10px;}
+.required{ font-size:14px; position:absolute; top:50%; right:60px;}
+.requisitiontextarea{ width:256px; height:60px; line-height:20px; border:0px; border-radius:5px; box-shadow:inset 0px 3px 4px #cfcfcf; padding:5px 10px; overflow:hidden;}
+.checkbox_attention{ float:left; margin-right:10px; margin-top:13px; }
+.input_upload{border:0px; width:194px; height:25px; border-radius:5px; box-shadow:inset 0px 3px 4px #cfcfcf; padding:5px 10px; float:left;}
+
+/*下拉*/
+.province_select,.city_select{ width:128px;  }
+.drop_down{ width:276px; }
+.birthday{ width:60px;}
+.birthday_span{ display:inline-block; margin:0px 4px; }
+
+/*单选*/
+.requisitionGender{ float:left; margin-right:10px;}
+
+/*多选*/
+.requisitioncheckbox{ display:block; margin-top:10px; clear:both;}
+.requisitionFind{ float:left; margin-right:10px;  }
+
+/*按钮*/
+.input_button{ border:0px; width:51px; height:40px; background-position:0px -283px; float:left; margin-left:10px; cursor:pointer; position:relative; }
+
+/*其他*/
+.requisitionLine{ width:273px; height:1px; background-color:#fff;}
+.requisitionText{ width:273px; min-height:40px; line-height:20px; font-size:12px; }
+
+.requisitionDate{ position:relative; z-index:99;}
+
+/*申请单展示*/
+.requisitionShow .J_checkbox{ margin-left:40px;}
+.requisition_show{ width:435px;   border-radius:10px; border:1px solid transparent;  position:absolute; top:237px; left:160px; margin:0px 1px 6px 0px; z-index:1;}
+.requisition_show_opacity{ width:100%; height:100%; border:1px solid #5cadfe; border-radius:10px; position:absolute; z-index:-1;}
+.requisition_show_opacity_con{ width:100%; height:100%; position:absolute; z-index:0;}
+.requisition_show_form{ }
+.requisition_title{ text-align:center; font-size:18px; padding:30px 0px 10px; cursor:move; position:relative; }
+.requisition_button_box{ padding:20px 0px; text-align:center;}
+.requisition_button{ border:0px; cursor:pointer; border-radius:5px; position:relative;}
+.requisition_show_content{min-height:300px;}
+
+.requisition_show_form select{height:28px; border:1px solid #a5acb2; background-color:#f4f4f4; padding:5px;}
+
+.moveModel{ border:1px solid #5cadff; border-radius:5px; box-shadow:0px 0px 5px #5cadff; position:relative; }
+.requisitionModel_bg{ width:100%; height:100%; background-color:#a8d4dd; opacity:0.5; filter:Alpha(Opacity=50); position:absolute; top:0px; left:0px; z-index:-1;  }
+.icon_move_model{ position:absolute; top:43%; left:25px;}
+.icon_delete_model{ position:absolute; top:10px; right:10px;}
+.icon_editor_model{ position:absolute; bottom:5px; right:5px; color:#fff; line-height:20px; padding-left:16px;}
+
+
+.J_dividing_line,.J_attention_weibo{ height:40px; line-height:40px;}
+
+.requisition_show_content  .birthday_span{ margin:0px 4px;}
+.requisition_show_content  .requisitionLabel{margin-right:3px;}
+.requisition_show_content  .city_select{ margin-left:20px;}
+/*操作*/
+.addOperating{ display:none;}
+
+
+
+
+/*选择颜色*/
+.selectColorDiv{ float:left; margin-left:12px; padding:10px 0px;}
+.selectColor{ display:inline-block; width:36px; height:20px; line-height:20px; text-align:center; }
+
+/*透明度*/
+.selectTransparency{ color:#ffffff; padding:2px 3px 2px 10px; margin:0px 3px 10px 4px; background-color:#4e4c4d;}
+.selectTransparency_label{}
+.selectTransparency_select{ width:70px; text-align:center; padding-left:10px;}
+.selectTransparency_select option{padding-left:0px;}
+
+
+/*保存表单*/
+.icon_save_requisition{ width:95px; height:36px; background-position:-58px -282px;}
+.save_requisition{ line-height:36px; text-align:center; color:#fff; margin-left:330px;}
+
+
+/*前台样式*/
+.requisitionShow .requisitionForm{ background-color:transparent; }
+.requisitionContainer{ width:760px; position:relative;}
+.requisition_bg{}
+.requisitionShow{}
+.requisitionShow .requisitionForm{ margin:0 auto;}
+.requisitionShow .requisitionModel{ padding:5px 0px 10px 0px;}
+.requisitionShow .requisitionLabel_text{font-weight: bold;line-height: 40px;float: left;text-align: right;min-width: 66px;}
+.requisitionShow .J_multiple,.requisitionShow .J_single_line,.requisitionShow .J_attention_weibo{ padding-left:30px;}
+.requisitionShow .J_gender label,.requisitionShow .J_radio label{ margin-top:13px;}
+.requisitionShow .J_dividing_line .requisitionLine{ width:395px;}
+.requisitionShow .birthday{ width:77px;}
+.requisitionShow .requisitionText{ width:395px;}
+.requisitionShow .J_name .requisitionLabel_text,.requisitionShow .J_age .requisitionLabel_text,.requisitionShow .J_id_card .requisitionLabel_text,.requisitionShow .J_email .requisitionLabel_text,.requisitionShow .J_tel .requisitionLabel_text,.requisitionShow .J_email .requisitionLabel_text{ height:40px; line-height:55px;}
+
+.J_radio .requisitionLabel{ display:block;}
+
+.requisitionShow{ width:435px;   border-radius:10px; border:1px solid transparent;  position:absolute; top:237px; left:160px; margin:35px 1px 6px 0px; z-index:1;}
+.requisitionShow .requisition_show_opacity{ width:100%; height:100%; border:1px solid #5cadfe; border-radius:10px; position:absolute; z-index:-1;}
+.index_username_id{ position:absolute; bottom:0; left:0; background-color:#FFF;}
+.username_top{ width:748px; height:36px; background:url(/assets/index_username.png) no-repeat;color:#FFF; font-weight:bold; line-height:36px; padding-left:12px;}
+.username_id{ width:180px; height:36px; background-color:#F5F5F5; border:#C1C1C1 solid 1px;}
+.username_id span{ display:inline; float:left;}
+.username_idnamebox{ margin-top:12px; width:768px;}
+.username_id{ float:left; margin:0px 10px 10px 0px;}
+.username_span_img{ width:23px; height:23px; margin:7px 0px 0px 7px;}
+.username_span_img img{ width:23px; height:23px;}
+.username_span_name{ margin-left:8px; line-height:36px; font-weight:bold; width:136px; height:36px; overflow:hidden;}
+
+.requisition_show .city_select{ margin-left:17px;}
+
+/*弹窗添加样式*/
+.pop_iconExpression{float:left;}
+.weibo_label{ float:left; margin-top:2px;}
+.weibo_checkbox{ float:left; color:#4a4a4a; margin:0px 10px;}
+
+.Img_foter{  margin:0 auto; background-color:#FFF; padding:25px 0px 15px 0px; margin:0px -19px;}
+.Img_foter h3{ font-size:12px; color:#555555; padding:0px 0px 10px 10px;}
+
+
+/*轮播用户头像*/
+.carousel_box{ position:relative;}
+.carousel{width:402px;  overflow:hidden; margin: auto; position:relative;}
+.carousel ul{ overflow:hidden; position:relative;}
+.carousel li{ float:left; height:45px; margin-right:6px;}
+.carousel a{ display:inline-block; height:45px; width:45px; position:relative;}
+.carousel img{ max-width:45px; max-height:45px; width:45px; height:45px;}
+.carousel input{ position:absolute; right:0px; bottom:0px;}
+.carousel p{ color:#0052BD; width:45px; height:14px; margin-top:6px; overflow:hidden;}
+.icon_carousel{ background:url(/assets/pop_icon.png) no-repeat;}
+
+.carousel_pre_box,.carousel_next_box{cursor:pointer; width:15px; height:43px; display:inline-block; position:absolute;  top:0px;}
+.carousel_pre_box{   left:0px; }
+.carousel_next_box{  right:0px;}
+
+.carousel_active{ background:url(/assets/pop_icon.png) no-repeat; background-position:-0px -82px;}
+
+.carousel_pre,.carousel_next{ display:inline-block; width:5px; height:9px; top:17px; position:absolute;}
+.carousel_pre{ background-position:-20px -82px; left:4px;}
+.carousel_next{ background-position:-20px -116px; right:4px;}
+
+
+
+.line {  height:40px; width:293px; } 
+
+
+#sample{margin-left:-130px ; margin-left:-133px \0; }
+.sample {
+width:195px; height:25px; line-height:25px; border-radius:5px; box-shadow:inset 0px 3px 4px #cfcfcf; padding:5px 10px; float:left; color: #989898; border:0;}
+
+.weibo_upbtn_pic{display:inline-block; position: relative; width:51px; height:40px; cursor:pointer; text-align:center; background:url(/assets/upload_button.jpg) no-repeat; line-height:40px; color:#FFF; font-size:14px; border-radius:5px; overflow:hidden; vertical-align:middle; margin-left:10px;}  
+.filePrew{ border:0px; padding:0; cursor:pointer; display: block;  position: absolute; top: 0; left:0; width:51px; height:40px;  font-size:100px; opacity:0; filter:alpha(opacity=0); }  
+.abc{ padding:0; border:0px;  background-color:#FFF; width:195px; height:25px; line-height:25px; border-radius:5px; box-shadow:inset 0px 3px 4px #cfcfcf; padding:5px 10px; color: #000; border:0; vertical-align:middle;}

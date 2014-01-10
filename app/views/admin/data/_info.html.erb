@@ -1,0 +1,96 @@
+<div class="adminBox_mid_tb">
+  <%= form_tag manager_link("/admin/data/index"), :id => "form1" do %>
+    <div class="adminCon_header-a">
+      <div class="adminCon_lia">
+       <div class="adminLeft magT4">
+        <label class="adminRido">是否加V：</label>
+        <select class="adminCon_slect selectjiaV" name="v">
+          <option value="">全部</option>
+          <option value="0" <%= "selected" if @v == "0"%>>是</option>
+          <option value="1" <%= "selected" if @v == "1"%>>否</option>
+        </select>
+        <label class="adminRido ">性别：</label>
+        <select class="adminCon_slect selectgenter" name="sex">
+          <option value="">全部</option>
+          <option value="0" <%= "selected" if @sex == "0"%>>男</option>
+          <option value="1" <%= "selected" if @sex == "1"%>>女</option>
+        </select>
+        <div class="provincecity">
+          <label class="adminRido">地区：</label>
+          <select class="adminCon_slect J_select_province" name="pro">
+            <option value="">不限</option>
+          </select>
+          <select class="adminCon_slect J_select_city" name="city">
+            <option value="">不限</option>
+          </select>
+        </div>
+      </div>
+      <div class="adminRight magT2">
+        <span class="adminRight">
+          <a href="javascript:clear_data();" class="adminCon_ali adminCon_alib">清除</a>
+        </span>
+        <span class="adminRight">
+          <a href="javascript:$('#form1').submit();" class="adminCon_ali adminCon_alia">筛选</a>
+        </span>
+      </div> 
+      <div class="clearBoth"></div> 
+    </div>  
+    </div><!--adminCon_header-a end-->  
+    <div class="adminCon_header-b">
+    <div class="adminCon_lib">
+       <ul class="adminCon_lib_ul" >
+          <li>按粉丝数排序</li>
+          <% if @fans_type == 0%>
+            <li>
+              <%= link_to manager_link("/admin/data/index?fans_type=1&v=#{@v}&sex=#{@sex}&pro=#{@pro}&city=#{@city}") do %>
+                <span class="icon icon_on"></span>
+              <% end %>
+            </li>
+          <% elsif @fans_type == 1 %>
+            <li>
+              <%= link_to manager_link("/admin/data/index?fans_type=0&v=#{@v}&sex=#{@sex}&pro=#{@pro}&city=#{@city}") do %>
+                <span class="icon icon_under"></span>
+              <% end %>
+            </li>
+          <% end %>
+          <li><span class="adminRido_span">|</span></li>
+          <li>按申请顺序排序</li>
+          <% if @create_type == 0%>
+            <li>
+              <%= link_to manager_link("/admin/data/index?create_type=1&v=#{@v}&sex=#{@sex}&pro=#{@pro}&city=#{@city}") do %>
+                <span class="icon icon_on"></span>
+              <% end %>
+            </li>
+          <% elsif @create_type == 1 %>
+            <li>
+              <%= link_to manager_link("/admin/data/index?create_type=0&v=#{@v}&sex=#{@sex}&pro=#{@pro}&city=#{@city}") do %>
+                <span class="icon icon_under"></span>
+              <% end %>
+            </li>
+          <% end %>
+       </ul>
+    </div>
+    </div><!--adminCon_header-b end-->     
+  <% end %>
+</div><!--adminBox_mid_tb end-->
+
+<script type="text/javascript">
+  function clear_data(){
+    $(".selectjiaV").val("");
+    $(".selectgenter").val("");
+    $(".J_select_province").val("");
+    $(".J_select_city").val("");
+  }
+
+  $(function(){
+    var J_region=$('.adminLeft '),thiscareatRegionProvince=J_region.find('.J_select_province'),thiscareatRegionCity=J_region.find('.J_select_city');
+    J_region.careatProvinceCities(thiscareatRegionProvince,thiscareatRegionCity);
+    var pro = "<%= @pro%>";
+    var city = "<%= @city%>";
+    if(pro != "不限" && city != "不限" && pro != "" && city != ""){
+      $('.provincecity').settingProvinceCity(pro,city);
+    }else if(pro != "不限" && pro != ""){
+      $('.provincecity').settingProvinceCity(pro);
+    } 
+  });  
+</script>

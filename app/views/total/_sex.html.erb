@@ -1,0 +1,9 @@
+<div class="requisitionModel J_name">
+	<p class="requisitionLabel_text text_color">性别：</p>
+	<label class="requisitionLabel mr20"><input type="radio" name="list[<%= id%>]value" checked class="requisitionGender" value="男">男</label>
+	<label class="requisitionLabel mr20"><input type="radio" name="list[<%= id%>]value" class="requisitionGender" value="女">女</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="sex"/>
+</div>

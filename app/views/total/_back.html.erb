@@ -1,0 +1,7 @@
+<div class="requisition_bg">
+<% if @apply.backdrop_id.blank?%>
+  <img src="/assets/bg.jpg" id="back_img" style="<%= @apply.get_config("height") if @apply.get_config("img_show") == "0"%> width:760px"/>
+<% else %>
+  <img src="<%= @apply.get_image("back")%>" id="back_img" style="<%= @apply.get_config("height") if @apply.get_config("img_show") == "0"%> width:760px;"/>
+<% end %>
+</div>

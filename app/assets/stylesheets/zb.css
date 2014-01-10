@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+.adminContentBox{ width:746px; background-color:#4D4D4D; padding:0px 7px 7px 7px;}
+.adminBox{ width:722px; background-color:#FFF; padding:0px 12px 25px 12px; position:relative;}
+.adminBox_tp{color:#4F4F4F;  height:23px; padding-top:16px; padding-bottom:10px;}
+.admin_a-Col{color:#4F4F4F;}
+.adminLeft{ float:left;}
+.adminRight{ float:right;}
+.adminBox_tp_rt{ color:#4F4F4F; width:95px; height:23px; line-height:23px; text-align:center; font-weight:bold; background:url(/assets/requisition_icon.png) no-repeat -18px -0px; }
+.adminBox_tp_text{ display:inline-block; line-height:23px;}
+.adminBox_tp_iconRemind{ display:inline-block; margin:0 5px 0px 0px;}
+/*申请管理*/
+.Box_table{ width:100%; text-align:center;}
+.Box_table tr th,.Box_table tr td{ height:36px; border-right:#FFF solid 1px; color:#4F4F4F; border-bottom:#FFF solid 1px;}
+.Box_table tr td a{ color:#0D6FC4;}
+.Box_table tr td span{ padding:0px 3px;}
+.Box_table_tr{ background-color:#E0E9F1;}
+.Box_table_trb{ background-color:#F4F4F4;}
+/*无数据状态*/
+.no_data{ width:100%; text-align:center; margin-top:100px;}
+.adminBox_bot_ft{ width:100%; text-align:center; color:#ABBECF; font-size:14px;}
+.bot-pad{ padding:102px 0px 47px 0px;}
+.adminBox_btn{ width:188px; height:55px; background:#FFF url(/assets/requisition_icon.png) no-repeat 0px -102px; display:block; margin:auto;}
+.admin_btn_pad{ }
+/*有内容状态*/
+.adminCon_header-a{ width:722px; height:35px; background:url(/assets/data_nav_bg.png) no-repeat;}
+.adminCon_lia{ padding:5px 10px 5px 10px;}
+.adminCon_ali{ display:inline-block; background:url(/assets/pop_icon.png) no-repeat; text-align:center; line-height:22px;}
+.adminCon_alia,.adminCon_alib{width:39px; height:22px; margin-left:5px;}
+.adminCon_alia{ background-position:-261px -79px; color:#FFF; }
+.adminCon_alib{ background-position:-329px -79px; color:#000; }
+.adminCon_slect{ border:1px solid #afc4d6; width:74px; height:22px;  margin-right:15px; margin-left:0px;  vertical-align:middle; padding:3px;}
+.J_select_province,.J_select_city{ width:84px; }
+.J_select_city{margin-left:-10px;}
+.adminCon_slect-a{ width:53px; height:21px;}
+.adminCon_slect-b{ width:73px; height:21px;}
+.adminCon_header-b{ width:717px; height:27px; background-color:#F4F8FB; padding:1px; border:#AFC4D6 solid 1px; border-top:none;}
+.adminCon_lib{ width:704px; height:20px; background-color:#E0E9F1; padding:7px 0px 0px 13px;}
+.adminRido{ vertical-align:middle;}
+.adminCon_lib_ul{}
+.adminCon_lib_ul li{float:left; }
+.adminRido_span{ display:inline-block; margin:0 5px;}
+.icon_on,.icon_under{width:7px; height:9px; margin-left:10px;}
+.icon_on{  background-position:-10px -169px;}
+.icon_under{ background-position:-28px -169px;}
+.pdR6{ padding-top:6px;}
+.paL5{ padding-left:5px;}
+.padR10{ padding-right:10px;}
+.magL24{ margin-left:24px;}
+.magT4{ margin-top:4px;}
+.magT2{margin-top:2px;}
+.magB8{ margin-bottom:8px;}
+.pdB210{ padding-bottom:60px;}
+.adminContain_conLt{ width:144px; float:left; border-top:#FFF solid 1px;  border-right:#FFF solid 1px;}
+.adminContain_conLt .conLt_top{ width:143px; border-right:1px solid #afc4d5;}
+.conLt_top{ width:100%; height:36px; background-color:#E0E9F1; text-align:center; line-height:36px; color:#4F4F4F; font-weight:bold; }
+.conLt_middle{width:133px;  background-color:#F4F4F4; height:104px; border-top:#FFF solid 1px; padding:5px 0px 0px 10px; color:#4F4F4F; border-right:1px solid #afc4d5;}
+.midSpan{ display:block; float:right;}
+.midName{ width:106px; height:21px; overflow:hidden; text-align:left; display:inline; margin:-2px 0px 0px 5px;}
+.midName div{ margin-left:-2px;}
+.namePic img{ width:22px; height:22px;}
+.mid_add{ width:100%; height:15px; padding-top:6px; overflow:hidden;}
+.mid_add_span{ display:inline-block;  margin-right:8px;}
+.mid_add-a{ width:83px; height:23px; background:url(/assets/requisition_icon.png) no-repeat -125px -25px; display:inline-block;  color:#000; line-height:24px; margin-top:5px; }
+.mid_pop{ width:100%; height:16px; margin-top:5px; overflow:hidden;}
+.adminContain_conMid{ width:505px; border-right:#afc4d5 solid 1px;  border-top:#FFF solid 1px; float:left; overflow-x:auto; overflow-y:hidden;}
+.adminTab{ width:505px; overflow:hidden;}
+.adminContain_conMid_tit{ width:100%; height:36px; background-color:#E0E9F1;}
+.conMid_top{ float:left; width:101px; height:36px; background-color:#E0E9F1; text-align:center; line-height:36px; color:#4F4F4F; font-weight:bold; display:inline; }
+.adminContain_conRt{ width:70px; float:left; border-top:#FFF solid 1px; border-left:#fff solid 1px;}
+.conMid_bot{ width:100%; height:109px; background-color:#F4F4F4; border-top:#FFF solid 1px;}
+.conMid_li{ float:left; width:101px; height:99px; background-color:#F4F4F4; text-align:center; color:#4F4F4F; padding-top:8px; overflow:hidden;  }
+.conMid_li a{ color:#0D6FC4;}
+.conRt_con{ width:70px; height:101px; background-color:#F4F4F4; text-align:center; border-top:#FFF solid 1px; padding-top:8px;}
+.conRt_a{ color:#0D6FC4;}
+.conRt_con a{color:#0D6FC4;}
+
+.adminBox_mid_tbbox{ padding-bottom:60px;}
+.Box_table thead .text_algen_left{ padding-left:30px;}
+.text_algen_left{ text-align:left; padding-left:10px;}
+.Box_table_user_avatar{ float:left;}
+.Box_table_user_avatar{ width:22px; height:22px;}
+.Box_table_user_name{ float:left; display:inline-block; height:23px; line-height:23px; margin-left:5px; color:#4F4F4F !important;}
+
+
+.evencolor{ background-color:#e0e9f2;}
+.evencolor .conMid_li{background-color:#e0e9f2;}
+/*分页*/
+.pagination {margin:auto; color: #aaaaaa; text-align: center; padding: 0.3em;cursor:pointer; display:inline-block; font-size:12px; width:98%; position:absolute; bottom:30px;}
+.pagination a, .pagination span, .pagination em { display:inline-block; padding: 0.2em 0.5em; }
+.pagination .disabled {color: #C0C0C0; }
+.pagination .current {font-style: normal;font-weight: bold; color:#FFF; background-color:#666; }
+.pagination a {color: #666;text-decoration: none; }
+.pagination a:hover, .pagination a:focus {color:#FFF; }
+.pagination .previous_page {margin-right: 1em; }
+.pagination .next_page {margin-left: 1em; }
+.pagination a:hover, .pagination a:focus {background-color:#666; }
+
+
+
+.adminCon_lia .magT4{ margin-top:1px;}
+.provincecity{ display:inline-block;}
+
+.adminContain_con_p{ text-align:center; line-height:40px;}

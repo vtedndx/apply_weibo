@@ -1,0 +1,19 @@
+$("#pop_application").html("<%= escape_javascript(render :partial => "/admin/page/edit_writing") %>");
+
+var theTop = parseInt($('#memScrollTop').attr('viewMiddleTop')) ;
+
+easyDialog.open({
+  container : 'pop_application',
+  drag : true,
+  //lock : false,
+  fixed : true,
+  overlay : true,
+  follow : 'memScrollTop',
+  followX : 141,
+  followY : theTop 
+});
+
+createShadow();
+
+var value = $("#div_<%= @id%>").find("#<%= @id%>_text").val();
+$("#<%= @id%>_content").find(".newlet_text").val(value);

@@ -1,0 +1,80 @@
+<script type="text/javascript">
+$(function() {
+  <% session_key_name = Rails.application.config.session_options[:key] %>
+  $("#back_file").uploadify({
+  /*注意前面需要书写path的代码*/
+  'swf'       : '/assets/uploadify.swf',
+  'uploader'  : "<%= manager_link('/admin/page/save_bg_images')%>",
+  'formData'      : {
+          '_http_accept': 'application/javascript',
+          '_method': 'put',
+          '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+          'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>')
+        },
+  'queueID'        : 'fileQueue', //和存放队列的DIV的id一致
+  'fileObjName'   : 'back_file', //和以下input的name属性一致
+  'auto'           : true, //是否自动开始
+  'wmode'          : true,
+  'width'          : 51,
+  'height'         : 25,
+  'buttonImage'     : '/assets/upload.jpg', //按钮背景图
+  'multi'          : true, //是否支持多文件上传
+  'fileSizeLimit' : '2MB', //一次同步上传的文件数目
+  'queueSizeLimit' : 1, //队列中同时存在的文件个数限制
+      onUploadSuccess: function(file, data, response){
+        var res_json = eval('(' + data + ')');
+        $("#file_id").val(res_json.id);
+        $("#file_url").val(res_json.url);
+        var adminMainbgimg = $("#back_img");
+
+        var showstyle = $("input[name='imgshowstyle']:checked").val();
+        var adminMain = $(".adminMain");
+        var adminMainbgimg = $("#back_img");
+        a = adminMain.height();
+          b = adminMainbgimg.height();
+          s = 0;
+          if(a < b){
+            s = b;
+          }else{
+            s = a;
+          }
+        if(showstyle=="0"){//拉伸    
+          adminMainbgimg.show().attr("src", res_json.url).attr("height", s);
+        }else if(showstyle=="1"){//平铺
+          adminMain.css({'background-image':'url('+res_json.url+')', "height": s});
+        }
+      }
+  });
+
+  
+});
+function submit_back(){
+  $('.newlet_form').submit();
+}
+
+
+function close_back(type){
+  $("#easyDialogBox").hide();
+  var showstyle = type;
+  var adminMain = $(".adminMain");
+  var adminMainbgimg = $("#back_img");
+  $("#file_url").val($("#old_url").val());
+  a = adminMain.height();
+  b = adminMainbgimg.height();
+  var abc = 0;
+  if(a > b){
+    abc = a;
+  }else {
+    abc = b;
+  }
+  if(showstyle=="0"){//拉伸
+    adminMain.removeAttr('style');
+    adminMainbgimg.show().attr("src", $("#old_url").val()).css('height', abc);
+  }else if(showstyle=="1"){//平铺
+    adminMainbgimg.hide();
+    adminMain.css({'background-image':'url('+$("#old_url").val()+')', 'height': abc});
+  }
+  removeShadow();
+}
+
+</script>

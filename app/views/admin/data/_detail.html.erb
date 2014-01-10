@@ -1,0 +1,24 @@
+<div class="adminContain_conMid_tit">
+  <ul>
+    <% if !@apply.get_config("list").blank? %>
+      <% @apply.get_config("list").each do |key, value| %>
+        <% if value["type"] != "line" && value["type"] != "writing"%>
+          <% if value["type"] == "attention"%>
+            <li class="conMid_top"><%= value["text"].gsub(/[:：  ]*/, "") if value["text"]%></li>
+          <% else %>
+            <li class="conMid_top"><%= value["title"].gsub(/[:：  ]*/, "") if value["title"]%></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <li class="conMid_top"></li>
+      <li class="conMid_top"></li>
+      <li class="conMid_top"></li>
+      <li class="conMid_top"></li>
+      <li class="conMid_top"></li>
+    <% end %>
+  </ul>
+  <div class="clearBoth"></div>
+</div>
+
+

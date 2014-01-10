@@ -1,0 +1,11 @@
+
+<div class="icon icon_adminNav adminNavContent mt10">
+	<ul class="adminNavSelect">
+		<li class="adminFrist"><%= link_to "申请管理", weibo_manager_link("/admin/home/index")%></li>
+		<li class="adminFrist"><%= link_to "访客", weibo_manager_link("/admin/visitor/index")%></li>
+    </ul><!--adminNavSelect end-->
+    <ul class="adminNavMana">
+      <%= render :partial => "/admin/home/manager_opinion_other" %>
+    </ul><!--adminNavMana end-->
+</div><!--adminNav end-->
+<%= render :partial => "/admin/home/other_app" %>

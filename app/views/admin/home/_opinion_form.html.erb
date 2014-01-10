@@ -1,0 +1,50 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".pop_Opinion").focus(function(){
+      if($(this).val() == "请输入您的宝贵意见"){
+        $(this).val("");
+      }
+    });
+    $(".pop_Opinion").blur(function(){
+      if($(this).val() == ""){
+        $(this).val("请输入您的宝贵意见");
+      }
+    });
+  });
+  function submit_opinion(){
+    if($(".pop_Opinion").val() == "请输入您的宝贵意见"){
+      alert("请输入您的宝贵意见");
+      $(".pop_Opinion").focus();
+    }else {
+      $(".pop_add_activity_form").submit();
+    }
+  }
+</script>
+
+<div class="pop_bg"></div>
+<div class="pop_top pop_icon pop_iconTitle">
+	<p class="pop_title">问题反馈</p>
+    <a href="javascript:close_easy_dialog();" class="pop_colse pop_icon pop_iconColse"></a>
+</div>
+<div class="pop_content">
+<%= form_tag manager_link("/admin/home/submit_opinion"), :remote => true, :class => "pop_add_activity_form" do %>
+<textarea class="pop_Opinion holderContent" name="content" >请输入您的宝贵意见</textarea>
+<div class="pop_Feedback_con">
+
+<p class="pop_Feedback_description">欢迎您使用申请单应用，在使用过程中如果您有什么问题、意见或建议，可以在这里反馈给我们。如果您有应用定制化需求，也可以通过以下方式联系我们：</p>
+<p><span class="qq_icon"></span>客服QQ群：<span class="color_ff4102">168409428</span></p>
+<p><span class="tel"></span>联系电话：<span class="color_ff4102">62115325</span></p>
+<p><a target="_blank" href="http://e.weibo.com/2627647487/app_4063459532" title="http://e.weibo.com/2627647487/app_4063459532" ><span class="guanzhu"></span>@罗盘社会化</a></p>
+<p>官网地址：<a target="_blank" href="http://www.iluopan.com" class="httplink" title="http://www.iluopan.com" >www.iluopan.com</a></p>
+</div>
+<div class="clearBoth"></div>
+<div class="newlet_btn">
+  <div class="letBtn">
+    <a href="javascript:submit_opinion();" class="letBtn_a">提交</a>
+    <a href="javascript:void(0)" onclick="close_easy_dialog()" class="letBtn_b">关闭</a>
+  </div>
+  <div class="clearBoth"></div>
+</div>
+<% end %>
+  
+</div>

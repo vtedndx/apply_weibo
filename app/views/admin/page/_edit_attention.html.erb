@@ -1,0 +1,50 @@
+<script type="text/javascript">
+  function submit_atten(id){
+    var ra_val = $("#<%= @id%>_content").find("input[class='hot_checkbox']:checked").val();
+    var ra_text = $("#<%= @id%>_content").find(".newlet_text").val();
+    if(ra_text != "" && ra_text.length > 12){
+      alert("对不起，名称不能超过12个字");
+    }else {
+      var div_element = $("#div_"+id)
+    
+      $(".letBtn_b").click();
+
+      var a_href = div_element.find(".icon_editor_model").attr("href");
+      close_alert();
+      if(ra_val == "on"){
+        div_element.find("#"+id+"_checked").val(0);
+        div_element.find(".checkbox_attention").replaceWith('<input type="checkbox" class="checkbox_attention" checked/>');
+        div_element.find("#"+id+"_text").val(ra_text);
+        div_element.find(".text").html(ra_text);
+        div_element.find(".icon_editor_model").attr("href", a_href.replace("checked=<%= @checked%>", "checked=0"));
+      }else {
+        div_element.find("#"+id+"_checked").val(1);
+        div_element.find(".checkbox_attention").removeAttr("checked");
+        div_element.find("#"+id+"_text").val(ra_text);
+        div_element.find(".text").html(ra_text);
+        div_element.find(".icon_editor_model").attr("href", a_href.replace("checked=<%= @checked%>", "checked=1"));
+      }
+    }
+    
+  }
+
+  function close_alert(){
+    easyDialog.close();
+    removeShadow();
+  }
+</script>
+<div class="pop_top pop_icon pop_iconTitle">
+  <p class="pop_title">编辑关注</p>
+    <a href="javascript:close_alert();" class="pop_colse pop_icon pop_iconColse" data-dismiss="modal" aria-hidden="true"></a>
+</div>
+<div class="pop_content" id="<%= @id%>_content">
+<form class="newlet_form">
+  <div class="pop_form_text">
+      <p class="pop_form_font"><label><input type="checkbox" class="hot_checkbox" <%= @checked == "0" ? "checked" : ""%>></label><input type="text" class="newlet_text" value="<%= @text%>" /></p>
+  </div>
+  <div class="newlet_btn bgmg25">
+    <div class="letBtn"><a href="javascript:submit_atten('<%= @id%>')" class="letBtn_a">提交</a><a href="javascript:close_alert()" class="letBtn_b" data-dismiss="modal" aria-hidden="true">关闭</a></div>
+    <div class="clearBoth"></div>
+</div> 
+</form>  
+</div>

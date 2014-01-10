@@ -1,0 +1,2 @@
+$("#apply_radio_<%= @apply_id%>").removeAttr("checked");
+$("#open_close_<%= @apply_id%>").attr("href", '<%= manager_link("/admin/home/open_apply/#{@apply_id}")%>').html("开启");

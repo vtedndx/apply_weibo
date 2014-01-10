@@ -1,0 +1,8 @@
+<% if @apply.blank?%>
+  <img src="/assets/page_no_success.png" class="configuring"/>
+<% else %>
+  <%= render :partial => "/total/back" %>
+  <%= render :partial => "/total/index" %>
+  <%= render :partial => "/total/list" %>
+<% end %>
+

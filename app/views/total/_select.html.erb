@@ -1,0 +1,14 @@
+<div class="requisitionModel J_drop_down">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+	<label class="requisitionLabel">
+		<select class="drop_down" name="list[<%= id%>]value">
+			<% hash["value"].each_with_index do |val, i|%>
+				<option value="<%= val%>"><%= val%></option>
+			<% end %>
+		</select>
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="select"/>
+</div>

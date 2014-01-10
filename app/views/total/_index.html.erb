@@ -1,0 +1,78 @@
+<div class="requisition_show " style="<%= @apply.get_config("top_left")%>">
+<div class="requisition_show_opacity_con" style="background-color:<%= @apply.get_config('form_color')%>; opacity:<%= (1-(@apply.get_config("opacity").to_i*0.01)).round(1)%>;filter:alpha(opacity=<%= (100-(@apply.get_config("opacity").to_i)).to_i%>);">
+</div>
+
+<%= form_tag resession_link("/apply/submit_form"), :id => "apply_info", :class => "requisition_show_form", :multipart => true do%>
+  <h3 class="requisition_title text_color"><%= @apply.name%></h3>
+  <% if @apply.get_config("list")%>
+    <% @apply.get_config("list").each do |key, value|%>
+      <%= render :partial => "/total/#{value["type"]}", :locals => {:id => key, :hash => value}%>
+    <% end %>
+  <% end %>
+  <div class="requisition_button_box"><a href="javascript:void(0);"></a>
+    <input type="button" onclick="submit_info()" class="iconRequisition icon_requisition_button requisition_button" style="background-color:<%= @apply.get_config('button_color')%>;" id="b_button">
+  </div>
+<% end %>
+</div><!--requisitionFormContent end-->
+<script type="text/javascript">
+  <% if @situation == "exist"%>
+    alert("对不起，您已经申请过了");
+  <% elsif @situation == "sucess" %>
+    myScriptAjax("<%= resession_link('/ajax/share')%>");
+  <% end %>
+
+  function submit_info(){
+    if(check_form()){
+      $("#apply_info").submit();
+    }
+  }
+
+  function check_form(){
+    <% if @apply.get_config("list")%>
+      <% @apply.get_config("list").each do |key, value|%>
+        if("<%= value['type']%>" != "line" && "<%= value['type']%>" != "attention" && "<%= value['type']%>" != "writing" && "<%= value['type']%>" != "checkbox" && "<%= value['type']%>" != "region"){
+          if("<%= value['must']%>" == "0" && $("[name='list[<%= key%>]value']").val() == ""){
+            alert("请输入<%= value['title']%>");
+            $("[name='list[<%= key%>]value']").focus();
+            return false;
+          }
+        }
+
+        if("<%= value['must']%>" == "0" && "<%= value['type']%>" == "region"){
+          if($("[name='list[<%= key%>]value[]']").eq(0).val() == "不限"){
+            alert("请选择地区");
+            return false;
+          }
+        }
+
+        if("<%= value['type']%>" == "single_line" || "<%= value['type']%>" == "multiple"){
+          if($("[name='list[<%= key%>]value']").val() != "" && $("[name='list[<%= key%>]value']").val().length > parseInt("<%= value['size']%>")){
+            alert("对不起，<%= value['title'].gsub(':', "").gsub('：', '') if value['title']%>最多输入<%= value['size']%>个字");
+            $("[name='list[<%= key%>]value']").focus();
+            return false;
+          }
+        }
+
+        if("<%= value['must']%>" == "0" && "<%= value['type']%>" == "checkbox"){
+          if(parseInt("<%= value['size']%>") > $("[name='list[<%= key%>]value[]']:checked").length){
+            alert("对不起，<%= value['title'].gsub(':', "").gsub('：', '') if value['title']%>最少选择<%= value['size']%>个");
+            return false;
+          }
+        }
+      <% end %>
+    <% end %>
+    return true;
+  }
+
+  $(function(){
+    var colors = $(".text_color");
+    for(var i = 0;i < colors.length;i ++){
+      colors.eq(i).attr("style", "color:<%= @apply.get_config('writing_color')%>");
+    }
+
+    var line_colors = $(".line_color");
+    for(var i = 0;i < line_colors.length;i ++){
+      line_colors.eq(i).attr("style", "background-color:<%= @apply.get_config('writing_color')%>");
+    }
+  });
+</script>

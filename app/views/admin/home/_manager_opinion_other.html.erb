@@ -1,0 +1,13 @@
+<% if controller_name != "home"%>
+	<li>
+		<a href="<%= weibo_manager_link("/admin/home/index")%>" class="icon icon_application_mana">申请管理</a>
+	</li>
+<% end %>
+<li>
+	<a href="<%= manager_link("/admin/home/add_opinion")%>" data-remote="true" class="icon icon_problem_mana J_Feedback">？问题反馈</a>
+</li>
+<li>
+	<a href="javascript:void(0);" class="icon icon_other_app J_otherapp">其他应用
+		<span class="icon icon_white_triangle"></span>
+	</a>
+</li>

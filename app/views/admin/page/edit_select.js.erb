@@ -1,0 +1,34 @@
+$("#pop_application").html("<%= escape_javascript(render :partial => "/admin/page/edit_select") %>");
+var theTop = parseInt($('#memScrollTop').attr('viewMiddleTop')) ;
+
+easyDialog.open({
+  container : 'pop_application',
+  drag : true,
+  //lock : false,
+  fixed : true,
+  overlay : true,
+  follow : 'memScrollTop',
+  followX : 141,
+  followY : theTop 
+});
+
+createShadow();
+
+var values = $("#div_<%= @id%>").find(".select_values");
+var checkboxs = $(".select_checkboxs");
+checkboxs.html("");
+var value_html = "";
+var text = "";
+for(var i = 0;i < values.length;i ++){
+	text = values.eq(i).val();
+	if(i == 0){
+		value_html = '<p class="pop_form_font clone_checkbox"><span class="cho_span"><input type="text"  class="choose_text" value="'+text+'" /></span></p>';
+	}else {
+		value_html = '<p class="pop_form_font clone_checkbox" id="p_'+i+'"><span class="cho_span"><input type="text"  class="choose_text" value="'+text+'" /></span><a href="javascript:del_value(\''+i+'\');" class="cho_span cho_spanpic"></a></p>';
+	}
+	checkboxs.append(value_html);
+}
+var content = $("#<%= @id%>_content");
+content.find("#length").val(values.length);
+content.find(".newlet_text").val($("#<%= @id%>_title").val());
+$("#edit_select").click();

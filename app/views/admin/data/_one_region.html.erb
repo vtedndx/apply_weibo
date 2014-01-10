@@ -1,0 +1,13 @@
+<li class="conMid_li">
+  <% if !key.blank? && key["value"]%>
+
+    <% value = "" %>
+    <% key["value"].each do |obj| %>
+      <% if obj == "all" || obj == "选择" %>  
+        <% obj = "" %>
+      <% end %>
+        <% value = value + " " + obj%>
+    <% end %>
+    <%= value %>
+  <% end %>
+</li>

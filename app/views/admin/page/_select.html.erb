@@ -1,0 +1,37 @@
+<div class="requisitionModel J_drop_down" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="select"/>
+	<input type="hidden" name="list[<%= id%>]must" id="<%= id%>_must" value="<%= hash.blank? ? 0 : hash["must"]%>"/>
+	<input type="hidden" name="list[<%= id%>]title" id="<%= id%>_title" value="<%= hash.blank? ? "下拉：" : hash["title"]%>"/>
+	<div id="values_<%= id%>">
+    <% if hash.blank?%>
+      <input type="hidden" name="list[<%= id%>]value[]" class="select_values" value="下拉选项"/>
+    <% else %>
+      <% hash["value"].each do |val|%>
+        <input type="hidden" name="list[<%= id%>]value[]" class="select_values" value="<%= val%>"/>
+      <% end %>
+    <% end %>
+  </div>
+	<p class="requisitionLabel_text text_color"><%= hash.blank? ? "下拉：" : hash["title"]%></p>
+	<label class="requisitionLabel">
+		<select class="drop_down">
+			<% if hash.blank?%>
+		    <option>下拉选项</option>
+		  <% else %>
+		    <% hash["value"].each do |val|%>
+			    <option><%= val%></option>
+		    <% end %>
+		  <% end %>
+		</select>
+	</label>
+	<% if hash.blank? || hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% else %>
+		<span class="required" style="display: none;">*</span>
+	<% end %>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_select/#{id}?must=#{hash.blank? ? 0 : hash["must"]}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_drop_down">编辑</a>
+	</div>
+</div>

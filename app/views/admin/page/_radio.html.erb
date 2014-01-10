@@ -1,0 +1,43 @@
+<div class="requisitionModel J_radio" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="radio"/>
+	<input type="hidden" name="list[<%= id%>]must" id="<%= id%>_must" value="<%= hash.blank? ? 0 : hash["must"]%>"/>
+	<input type="hidden" name="list[<%= id%>]title" id="<%= id%>_title" value="<%= hash.blank? ? "单选框标题：" : hash["title"]%>"/>
+	<div id="values_<%= id%>">
+    <% if hash.blank?%>
+      <input type="hidden" name="list[<%= id%>]value[]" class="radio_values" value="选项"/>
+      <input type="hidden" name="list[<%= id%>]value[]" class="radio_values" value="选项"/>
+    <% elsif !hash["value"].blank? %>
+      <% hash["value"].each do |val|%>
+        <input type="hidden" name="list[<%= id%>]value[]" class="radio_values" value="<%= val%>"/>
+      <% end %>
+    <% end %>
+  </div>
+	<p class="requisitionLabel_text text_color"><%= hash.blank? ? "单选框标题：" : hash["title"]%></p>
+	<div id="value_inputs_<%= id%>">
+		<% if hash.blank?%>
+	    <label class="requisitionLabel " >
+				<input type="radio" class="requisitionGender"  name="gender" />选项
+			</label>
+			<label class="requisitionLabel " >
+				<input type="radio" class="requisitionGender" name="gender" />选项
+			</label>
+	  <% elsif !hash["value"].blank? %>
+	    <% hash["value"].each do |val|%>
+		    <label class="requisitionLabel " >
+					<input type="radio" class="requisitionGender" name="gender" /><%= val%>
+				</label>
+	    <% end %>
+	  <% end %>
+	</div>
+	<% if hash.blank? || hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% else %>
+		<span class="required" style="display: none;">*</span>
+	<% end %>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_radio/#{id}?must=#{hash.blank? ? 0 : hash["must"]}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_radio">编辑</a>
+	</div>
+</div>

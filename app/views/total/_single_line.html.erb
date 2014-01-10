@@ -1,0 +1,10 @@
+<div class="requisitionModel J_name">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+	<label class="requisitionLabel">
+		<input type="text" class="requisitionName input_text" name="list[<%= id%>]value">
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="single_line"/>
+</div>

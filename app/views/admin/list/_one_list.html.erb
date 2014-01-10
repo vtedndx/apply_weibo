@@ -1,0 +1,11 @@
+<tr class="Box_table_trb" id="list_<%= list.id%>"> 
+  <td class="text_algen_left">
+  	<%= link_to "http://weibo.com/#{list.user.sns_uid}/profile?rightmod=1&wvr=5&mod=personinfo", :title => list.user.sns_uimg, :target => "_blank" do %>
+  		<img src="<%= list.user.sns_uimg%>" class="Box_table_user_avatar" />
+  	<% end %>
+  	<%= link_to list.user.sns_uname, "http://weibo.com/#{list.user.sns_uid}/profile?rightmod=1&wvr=5&mod=personinfo", :title => list.user.sns_uimg, :class => "Box_table_user_name", :target => "_blank"%>
+  </td>
+  <td>
+  	<%= link_to "删除", manager_link("/admin/list/del_list/#{list.id}"), :remote => true%>
+  </td>
+</tr>

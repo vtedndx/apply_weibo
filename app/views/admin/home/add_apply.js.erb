@@ -1,0 +1,13 @@
+var theTop = parseInt($('#memScrollTop').attr('viewMiddleTop')) ;
+easyDialog.open({
+	container : 'pop_application',
+	drag : true,
+	//lock : false,
+	fixed : true,
+	overlay : true,
+	follow : 'memScrollTop',
+	  followX : 141,
+	  followY : theTop,
+});	
+createShadow();
+$("#pop_application").html("<%= escape_javascript( render :partial => "/admin/home/add_apply", :locals => {:company => @company}) %>");

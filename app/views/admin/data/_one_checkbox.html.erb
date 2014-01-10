@@ -1,0 +1,9 @@
+<li class="conMid_li"> 
+  <% if !key.blank? && !key["value"].blank?%>
+    <% key["value"].each do |k| %>
+      <p>
+        <%= k %>
+      </p>
+    <% end %>
+  <% end %>
+</li>

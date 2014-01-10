@@ -1,0 +1,14 @@
+<div class="requisitionModel J_attention_weibo" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="attention"/>
+	<input type="hidden" name="list[<%= id%>]checked" id="<%= id%>_checked" value="<%= hash.blank? ? 0 : hash["checked"]%>"/>
+	<input type="hidden" name="list[<%= id%>]text" id="<%= id%>_text" value="<%= hash.blank? ? "关注该企业" : hash["text"]%>"/>
+	<label class="requisitionLabel">
+		<input type="checkbox" class="checkbox_attention" <%= hash.blank? || hash["checked"] == "0" ? "checked" : ""%>/><span class="text  text_color"><%= hash.blank? ? "关注该企业" : hash["text"]%></span>
+	</label>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_attention/#{id}?checked=#{hash.blank? ? 0 : hash["checked"]}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_weibo">编辑</a>
+	</div>
+</div>

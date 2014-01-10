@@ -1,0 +1,92 @@
+<div class="requisitionModel J_birthday" id="<%= id%>_date">
+	<p class="requisitionLabel_text text_color">生日：</p>
+	<label class="requisitionLabel" for="birthday_years">
+		<select class="birthday birthday_years" name="list[<%= id%>]value[]">
+			<option>选择</option>
+		</select>
+		<span class="birthday_span">年</span>
+	</label>
+	<label class="requisitionLabel" for="birthday_month">
+		<select class="birthday birthday_month" name="list[<%= id%>]value[]">
+			<option>选择</option>
+		</select>
+		<span class="birthday_span">月</span>
+	</label>
+	<label class="requisitionLabel" for="birthday_day">
+		<select class="birthday birthday_day" name="list[<%= id%>]value[]">
+			<option>选择</option>
+		</select>
+		<span class="birthday_span">日</span>
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="birthday"/>
+</div>
+<script type="text/javascript">
+$(function(){
+    var i=1950;
+    var date = new Date();
+    year = date.getFullYear();//获取当前年份
+    var dropList;
+    var date_id = $("#<%= id%>_date");
+    for(i;i<year+18;i++){
+        if(i == year){
+            dropList = dropList + "<option value='"+i+"' selected>"+i+"</option>";
+        }else{
+            dropList = dropList + "<option value='"+i+"'>"+i+"</option>";
+        }
+    }
+    $(".birthday_years").html(dropList);//生成年份下拉菜单
+    var monthly;
+    for(month=1;month<13;month++){
+        monthly = monthly + "<option value='"+month+"'>"+month+"</option>";
+    }
+    $(".birthday_month").html(monthly);//生成月份下拉菜单
+    var dayly;
+    for(day=1;day<=31;day++){
+        dayly = dayly + "<option value='"+day+"'>"+day+"</option>";
+    }
+    $(".birthday_day").html(dayly);//生成天数下拉菜单
+    function monthday(){  
+        var currentDay;
+        var Flag = $(".birthday_years").val();
+        var currentMonth = $(".birthday_month").val();
+        switch(currentMonth){
+            case "1" :
+            case "3" :
+            case "5" :
+            case "7" :
+            case "8" :
+            case "10" :
+            case "12" :total = 31;break;
+            case "4" :
+            case "6" :
+            case "9" :
+            case "11" :total = 30;break;
+            case "2" :
+                if((Flag%4 == 0 && Flag%100 != 0) || Flag%400 == 0){
+                    total = 29;
+                }else{
+                    total = 28;
+                }
+            default:break;
+        }
+        for(day=1;day <= total;day++){
+            currentDay = currentDay + "<option value='"+day+"'>"+day+"</option>";
+        }
+        $(".birthday_day").html(currentDay);//生成日期下拉菜单
+    }
+    $(".birthday_years").change(function(){
+      var select_val=$(this).val();
+      if((select_val%4 == 0 && select_val%100 != 0) || select_val%400 == 0){
+      }
+      else{ 
+         monthday();
+        }    
+      })
+    $(".birthday_month").change(function(){
+        monthday();
+    })  
+})
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apply</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script src="http://js.t.sinajs.cn/t4/enterprise/js/public/appframe/client.js?version="></script>
+    <script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
+    <script type="text/javascript">
+      function add_company(){
+        $.ajax({
+          url: "<%= manager_link('/admin/home/add_company')%>",
+          dataType: "script"
+        });
+      }
+    </script>
+  </head>
+  <% if @user.blank? || !@user.token_valid?%>
+    <body onload="authLoad()">
+    <% elsif @company.get_config("company_name").blank?%>
+    <body onload="add_company();">
+    <% else %>
+    <body>
+    <% end %>
+    <div class="adminContainer">
+      <% if controller_name == "home" || controller_name == "visitor"  %>
+        <%= render :partial => "/admin/home/head" %>
+      <% else %>
+        <%= render :partial => "/admin/home/apply_head" %>
+      <% end %>
+      <%= render :partial => "/total/mem_scroll" %>
+      <% if controller_name == "page"%>
+        <%= yield %>
+      <% else %>
+        <div class="adminContentBox">
+          <%= yield %>
+        </div>
+      <% end %>
+    </div><!--adminContainer end-->
+    <input type="hidden" id="current_url" name="current_url" value="http://e.weibo.com/thirdapp/app?appkey=<%= SNS['appkey']%>"/>
+    <div id="pop_application" class="pop pop_application"></div>
+    <div id="pop_company" class="pop pop_loading"></div>
+    
+    <% if controller_name == "home" && action_name == "index" %>
+      <a href="http://e.weibo.com/huoyanshuju" target="_blank"><img src="http://normal-const.b0.upaiyun.com/system/normal_pics/avatars/000/000/001/original/np_more_20130621160632.png?1371801977"/></a>
+    <% end %>
+
+    
+  </body>
+</html>

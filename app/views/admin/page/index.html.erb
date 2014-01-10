@@ -1,0 +1,258 @@
+<div class="adminMain" style="<%= @apply.get_config("height")%> <%= "background-image: url(#{@apply.img_url.blank? ? "/assets/bg.jpg" : @apply.img_url});" if @apply.get_config("img_show") == "1"%>">
+  <input type="hidden" id="abc" value="<%= @company.cid%>"/>
+  <input type="hidden" id="view" value="<%= @user.sns_uid%>"/>
+  <input type="hidden" id="esvd" value="<%= @esvd%>"/>
+  <div class="adminMain_bg">
+    <% if @apply.get_config("img_show") == "0"%>
+      <img src="<%= @apply.img_url.blank? ? "/assets/bg.jpg" : @apply.img_url%>" style="<%= @apply.get_config("height")%>"/>
+    <% else %>
+      <img src="" id="back_img" style="display:none"/>
+    <% end %>
+  </div>
+  <div class="requisition">
+  <a href="<%= manager_link("/admin/page/bg_images")%>" data-remote="true" class="iconRequisition icon_setting_bg adminSettingBg J_setting_bg"><i class="icon_small_gear"></i>更换背景图</a>
+  <div class="requisitionSetting">
+    <div class="iconRequisition icon_setting_top requisitionSetting_top requisitionSetting_top_show">
+        <i class="icon_big_gear"></i>
+          <i class="icon_vertical_lines"></i>
+          <p class="requisitionTitle">申请单设置</p>
+         <a href="javascript:void(0);" class="J_requisitionShow"><i class="icon_display"></i></a>
+      </div><!--requisitionSetting_top end-->
+      
+      <div class="iconRequisition icon_setting_top requisitionSetting_top requisitionSetting_top_hide">
+          <i class="icon_vertical_lines"></i>
+         <a href="javascript:void(0);" class="J_requisitionHide"><i class="icon_hide"></i></a>
+      </div><!--requisitionSetting_top end-->
+      
+  <script type="text/javascript">
+    $(function(){
+      var requisitionShow=$('.J_requisitionShow'),requisitionHide=$('.J_requisitionHide'),requisitionSetting_top_show=$('.requisitionSetting_top_show'),requisitionSetting_top_hide=$('.requisitionSetting_top_hide');
+      requisitionSetting_top_show.show();
+      requisitionSetting_top_hide.hide();
+      requisitionShow.click(function(){
+      $(this).parents('.requisitionSetting').animate({'right':'-120px'},1000,function(){
+        requisitionSetting_top_show.hide();
+        requisitionSetting_top_hide.show(); 
+      }); 
+      });
+      requisitionHide.click(function(){
+      requisitionSetting_top_show.show();
+      requisitionSetting_top_hide.hide();
+      $(this).parents('.requisitionSetting').animate({'right':'0px'},1000);
+      });
+    });
+
+    function click_opacity(obj){
+    $("#opacity").val($(obj).val());
+  }
+  </script>
+    <div class="requisition_content">
+      <p class="iconRequisition icon_setting_content requisition_content_title">请点击选择表格内元素</p>
+        <ul class=" requisition_setting_option">
+          <li class="iconRequisition icon_setting_option_bg J_setting_name" onclick="click_name(this)"><i class="icon_name"></i>姓名</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_gender" onclick="click_sex(this)"><i class="icon_gender"></i>性别</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_age" onclick="click_age(this)"><i class="icon_age"></i>年龄</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_birthday" onclick="click_birthday(this)"><i class="icon_birthday"></i>生日</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_region" onclick="click_region(this)"><i class="icon_region"></i>地区</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_id_card" onclick="click_card(this)"><i class="icon_id_card"></i>身份证</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_email" onclick="click_email(this)"><i class="icon_mail"></i>邮件</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_tel" onclick="click_tel(this)"><i class="icon_phone"></i>手机</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_attention_weibo" onclick="click_attention(this)"><i class="icon_attention"></i>关注</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_dividing_line" onclick="click_line(this)"><i class="icon_dividing_line"></i>分割线</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_writing" onclick="click_writing(this)"><i class="icon_writing"></i>文字</li>
+         
+          <li class="iconRequisition icon_setting_option_custom setting_option_custom">自定义元素</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_single_line" onclick="click_single_line(this)"><i class="icon_single_line_text"></i>单行文本</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_multiple" onclick="click_multiple(this)"><i class="icon_multi_line_text"></i>多行文本</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_checkbox" onclick="click_checkbox(this)"><i class="icon_check"></i>复选</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_radio" onclick="click_radio(this)"><i class="icon_radio"></i>单选</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_drop_down" onclick="click_select(this)"><i class="icon_drop_down_box"></i>下拉框</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_images_upload" onclick="click_file(this)"><i class="icon_image_upload"></i>图片上传</li>
+          <li class="iconRequisition icon_setting_option_bg J_setting_date" onclick="click_date(this)"><i class="icon_date"></i>日期</li>
+        </ul><!--requisition_setting_option end-->
+      <p class="iconRequisition icon_setting_content requisition_content_title">请设置元素颜色</p>
+      <div class="selectColorLeft selectColorDiv">
+        <p class="selectColor">表单</p>
+          <div id="form_color" class="form_color colorSelector"><div style="background-color: <%= @apply.get_config("form_color")%>"></div></div>
+        </div><!--selectColorLeft-->
+        <div class="selectColorMidden selectColorDiv">
+          <p class="selectColor">文字</p>
+            <div id="text_color" class="text_color colorSelector"><div style="background-color: <%= @apply.get_config("writing_color")%>"></div></div>
+        </div><!--selectColorLeft-->
+        <div class="selectColorRight selectColorDiv">
+          <p class="selectColor">按钮</p>
+            <div id="button_color" class="button_color colorSelector"><div style="background-color: <%= @apply.get_config("button_color")%>"></div></div>
+        </div><!--selectColorLeft-->
+        <div class="clearBoth"></div>
+        <div class="selectTransparency">
+          <label class="selectTransparency_label">透明度：<select class="selectTransparency_select"  onchange="click_opacity(this);"></select></label>
+        </div>
+  <script type="text/javascript">
+
+  /*颜色选择插件*/
+  $(function(){
+  $('.form_color').ColorPicker({
+  color: '<%= @apply.get_config("form_color")%>',
+  onShow: function (colpkr) {
+    $(colpkr).fadeIn(500);
+    return false;
+  },
+  onHide: function (colpkr) {
+    $(colpkr).fadeOut(500);
+    return false;
+  },
+  onChange: function (hsb, hex, rgb) {
+    $('.form_color div').css('backgroundColor', '#' + hex);
+    $('.requisition_show_opacity').css({'backgroundColor':'#' + hex,'border':'1px solid #'+hex,'box-shadow':'0px 0px 10px #'+hex});
+    $("#form_color_input").val('#' + hex);
+  }
+  });
+  $('.text_color').ColorPicker({
+  color: '<%= @apply.get_config("writing_color")%>',
+  onShow: function (colpkr) {
+    $(colpkr).fadeIn(500);
+    return false;
+  },
+  onHide: function (colpkr) {
+    $(colpkr).fadeOut(500);
+    return false;
+  },
+  onChange: function (hsb, hex, rgb) {
+    $('.text_color div').css('backgroundColor', '#' + hex);
+    $('.requisition_title').css('color', '#' + hex);
+    $('.requisitionLabel_text').css('color', '#' + hex);
+    $('.requisitionLine').css('backgroundColor', '#' + hex);
+    $("#writing_color_input").val('#' + hex);
+  }
+  });
+  $('.button_color').ColorPicker({
+  color: '<%= @apply.get_config("button_color")%>',
+  onShow: function (colpkr) {
+    $(colpkr).fadeIn(500);
+    return false;
+  },
+  onHide: function (colpkr) {
+    $(colpkr).fadeOut(500);
+    return false;
+  },
+  onChange: function (hsb, hex, rgb) {
+    $('.button_color div').css('backgroundColor', '#' + hex);
+    $('.requisition_button').css('backgroundColor', '#' + hex);
+    $("#button_color_input").val('#' + hex);
+  }
+  }); 
+  /*设置透明度*/
+  var selectTransparencyArray=['100%','90%','80%','70%','60%','50%','40%','30%','20%','10%','0%'];
+  var selectTransparencySelect=$('.selectTransparency_select');
+  for(i=0;i<selectTransparencyArray.length;i++){
+    careatTransparencyOption=$('<option></option>');
+    selectTransparencySelect.append(careatTransparencyOption);
+    selectTransparencySelect.find('option:last').text(selectTransparencyArray[i]);
+    selectTransparencySelect.find('option:last').attr('value',100-(i*10));  
+    var select_value = 100-(i*10)+"";
+    if(select_value == "<%= @apply.get_config('opacity')%>"){
+      selectTransparencySelect.find('option:last').attr('selected', "selected");
+    }
+  }
+  selectTransparencySelect.change(function(){
+  var optionselected=$(this).find('option:selected').val();
+  var optionselectedText=1-(optionselected/100);
+  var optionselectedTextIE=100-optionselected;
+  $('.requisition_show_opacity').css('opacity',optionselectedText);
+  var o = $('.requisition_show_opacity').attr("style").split(";");
+  var o_style = o[0]+";"+o[1];
+  $(".requisition_show_opacity").attr("style", o_style+";filter:alpha(opacity="+optionselectedTextIE+");");
+  })
+  });
+  </script>
+     </div><!--requisition_comment end-->
+  </div><!--requisitionSetting end-->
+
+  </div><!--requisition-->
+  <div class="requisition_show" style="<%= @apply.get_config("top_left")%>">
+
+  <a href="javascript:submit_page();" class="iconRequisition icon_save_requisition save_requisition">保存表单</a>
+  <div class="requisition_show_opacity" style="background-color:<%= @apply.get_config('form_color')%>; opacity:<%= (1-(@apply.get_config("opacity").to_i*0.01)).round(1)%>;filter:alpha(opacity=<%=(100-(@apply.get_config("opacity").to_i)).to_i%>);">
+  </div>
+    <%= form_tag manager_link("/admin/page/submit_page"), :class => "requisition_show_form" do %>
+      <input type="hidden" id="form_color_input" name="form_color" value="<%= @apply.get_config("form_color")%>"/>
+      <input type="hidden" id="writing_color_input" name="writing_color" value="<%= @apply.get_config("writing_color")%>"/>
+      <input type="hidden" id="button_color_input" name="button_color" value="<%= @apply.get_config("button_color")%>"/>
+      <input type="hidden" id="top_left" name="top_left" value="<%= @apply.get_config("top_left")%>"/>
+      <input type="hidden" id="opacity" name="opacity" value="<%= @apply.get_config("opacity")%>"/>
+      <input type="hidden" id="height" name="height" value="<%= @apply.get_config("height")%>"/>
+      <h3 class="requisition_title"><%= @apply.name%></h3>
+      <div class="requisition_show_content">
+        <% if !@apply.get_config("list").blank?%>
+          <% @apply.get_config("list").each do |key, value|%>
+            <%= render :partial => "/admin/page/#{value["type"]}", :locals => {:id => key, :hash => value}%>
+          <% end %>
+        <% end %>
+      </div><!--requisition_show_content-->
+      <div class="requisition_button_box">
+      <a href="javascript:void(0);" type="submit" style="background-color:<%= @apply.get_config('button_color')%>;" class="iconRequisition icon_requisition_button requisition_button J_pop_share"></a>
+      </div>
+    <% end %>
+  </div><!--requisition_show-->
+  </form>
+  </div><!--requisitionFormContent end-->
+</div>
+<!--工具栏中各控件样式 end--> 
+<div class="pop pop_application" id="pop_application">
+</div>
+<script type="text/javascript">
+  $(function(){
+    $('.letBtn_a').click(function(){
+      if($('.newlet_text').val().length > 20){
+        alert("控件名称最多不超过20字");
+        return false;
+      }else if(isNaN($('.data_text').val())){
+        alert("请在“字数限制”中输入正确数字");
+        return false;
+      }else{
+        $('#edit_form').submit();
+        close_easy_dialog();
+      }
+    });
+    $('.pop_iconColse').click(function(){
+      close_easy_dialog();
+    });
+    $('.letBtn_b').click(function(){
+      close_easy_dialog();
+    });
+  });
+</script></div>
+<script type="text/javascript">
+  function submit_page(){
+    $("#height").val("height: "+$(".adminMain").height()+"px;");
+    $(".requisition_show_form").submit();
+  }
+
+$(function(){
+  //拖拽排序
+  $('.requisition_show').draggable({
+    containment: "parent",  
+    handle:"h3",
+    cursor: "move",
+    delay: 100,
+    stop: function(event,ui){
+      $("#top_left").val($(".requisition_show").attr("style"));
+    }
+  });
+  $('.requisition_show_content').sortable({
+    delay: 100, 
+    revert: true,
+    containment: 'parent'
+  }); 
+
+  var colors = $(".text_color");
+  for(var i = 0;i < colors.length;i ++){
+    colors.eq(i).attr("style", "color:<%= @apply.get_config('writing_color')%>");
+  }
+
+  var line_colors = $(".line_color");
+  for(var i = 0;i < line_colors.length;i ++){
+    line_colors.eq(i).attr("style", "background-color:<%= @apply.get_config('writing_color')%>");
+  }
+});
+</script>

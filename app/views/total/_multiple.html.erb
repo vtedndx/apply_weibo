@@ -1,0 +1,10 @@
+<div class="requisitionModel J_multiple">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+	<label class="requisitionLabel">
+		<textarea type="text" class="requisitiontextarea" name="list[<%= id%>]value"></textarea>
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="multiple"/>
+</div>

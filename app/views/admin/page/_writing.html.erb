@@ -1,0 +1,13 @@
+<div class="requisitionModel J_writing" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="writing"/>
+	<input type="hidden" name="list[<%= id%>]text" id="<%= id%>_text" value="<%= hash.blank? ? "请输入内容" : hash["text"]%>"/>
+	<label class="requisitionLabel">
+		<p class="requisitionText text_color"><%= hash.blank? ? "请输入内容" : hash["text"]%></p>
+	</label>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_writing/#{id}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_writing">编辑</a>
+	</div>
+</div>

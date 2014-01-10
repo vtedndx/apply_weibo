@@ -1,0 +1,37 @@
+<div class="loading_container">
+    <div class="iluopan_logo">
+        <span class="loadicon loadicon_logo"></span>
+    </div><!--iluopan_logo-->
+    
+    <div class="customer_contact_form">
+    	<div class="loadicon loadicon_form_title form_title"><span class="loadicon loadicon_title_step1"></span></div>
+        <%= form_tag manager_link("/admin/home/submit_company_info"), :remote => true, :class => "form_contnet" do %>
+        	<p class="form_contnet_p">请留下您的联系方式，以方便我们更好的为您提供服务</p>
+            <label class="customer_contact_label"><span class="customer_contact_name">公司名称:</span><input class="customer_contact_input_text customer_contact_companyName holderContent" type="text" name="companyName" id="companyName"  /><span class="required">*</span></label>
+            <label class="customer_contact_label"><span class="customer_contact_name">联系人姓名:</span><input class="customer_contact_input_text customer_contact_names holderContent" type="text" class="names" name="name" id="name" /><span class="required">*</span></label>
+            
+            <label class="customer_contact_label"><span class="customer_contact_name">联系电话:</span><input class="customer_contact_input_text customer_contact_email holderContent" type="text" class="tel" name="tel" id="tel" /><span class="required">*</span></label>
+            
+            <label class="customer_contact_label"><span class="customer_contact_name">联系邮箱:</span><input class="customer_contact_input_text customer_contact_tel holderContent" type="text" class="email" name="email" id="email"  /><span class="required">*</span></label>
+            
+            <label class="customer_contact_label_checkbox"><span class="customer_contact_checkboxh_span"><input type="checkbox" name="fans_luopan" class="customer_contact_checkbox" />关注罗盘社会化官方微博</span></label>
+           <div class="clearfix"></div>
+           <div class="customer_contact_label text_center"><a href="javascript:submit_company_info();"  class="loadicon loadicon_button customer_contact_button"></a></div>
+        <% end %>
+    </div><!--form_content-->
+</div><!--loading_container-->
+<script type="text/javascript">
+  function submit_company_info(){
+    if($.trim($("#companyName").val()) == "" || $.trim($("#companyName").val()) == "请输入您的公司名称"){
+      alert("请输入您的公司名称");
+    }else if($.trim($("#name").val()) == "" || $.trim($("#name").val()) == "输入您的联系姓名"){
+      alert("输入您的联系姓名");
+    }else if($.trim($("#email").val()) == "" || $.trim($("#email").val()) == "请输入您的联系邮箱"){
+      alert("请输入您的联系邮箱");
+    }else if($.trim($("#tel").val()) == "" || $.trim($("#tel").val()) == "请输入您的联系电话"){
+      alert("请输入您的联系电话");
+    }else {
+      $(".form_contnet").submit();
+    }
+  }
+</script>

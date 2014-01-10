@@ -1,0 +1,13 @@
+<li class="conMid_li">
+  <% if !key.blank? && !key["value"].blank?%>
+
+    <% value = "" %>
+    <% key["value"].each do |obj| %>
+      <% if obj == "all" || obj == "选择" %>  
+        <% obj = "" %>
+      <% end %>
+        <% value = value  + obj + "-" %>
+    <% end %>
+    <%= value[0...value.size-1] %>
+  <% end %>
+</li>

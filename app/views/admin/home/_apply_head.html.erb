@@ -1,0 +1,25 @@
+<div class="adminTop">
+  <div class="adminTop_left">
+    <p class="adminTop_title"><span class="icon icon_application"></span><span class="current_application">当前申请：</span><span class="users_application"><%= @apply.name%></span></p>
+  </div><!--adminTop_left end-->
+  <div class="adminTop_right">
+    <a href="<%= weibo_manager_link("/admin/home/index")%>" class="icon icon_white_button adminTop_return">返回申请管理>></a>
+  </div><!--adminTop_right end-->
+</div><!--adminTop end-->
+<div class="icon icon_adminNav adminNavContent mt10">
+  <ul class="adminNavSelect ml47">
+    <li>
+      <a href="<%= weibo_manager_link("/admin/page/index")%>" class="icon icon_adminNav <%= "adminNavActive" if controller_name == "page"%>">页面设置</a>
+    </li>
+    <li>
+      <a href="<%= weibo_manager_link("/admin/data/index")%>" class="icon icon_adminNav <%= "adminNavActive" if controller_name == "data"%>">申请数据</a>
+    </li>
+    <li>
+      <a href="<%= weibo_manager_link("/admin/list/index")%>" class="icon icon_adminNav <%= "adminNavActive" if controller_name == "list"%>">入选名单</a>
+    </li>
+  </ul><!--adminNavSelect end-->
+  <ul class="adminNavMana">
+    <%= render :partial => "/admin/home/manager_opinion_other" %>
+  </ul><!--adminNavMana end-->
+</div><!--adminNav end-->
+<%= render :partial => "/admin/home/other_app" %>

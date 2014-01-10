@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  function submit_must(id){
+    var ra_val = $("#<%= @id%>_content").find("input[name='newlet_radio']:checked").val();
+    var div_element = $("#div_"+id);
+    var content = $("#<%= @id%>_content");
+    var div_value = content.find(".newlet_text").val();
+    if(div_value != "" && div_value.length > 12){
+      alert("对不起，名称不能超过12个字");
+    }else {
+      div_element.find("#"+id+"_must").val(ra_val);
+      div_element.find("#"+id+"_title").val(div_value);
+      div_element.find(".requisitionLabel_text").html(div_value);
+      var a_href = div_element.find(".icon_editor_model").attr("href");
+      div_element.find(".icon_editor_model").attr("href", a_href.replace("must=<%= @must%>", "must="+ra_val));
+      if(ra_val == "0"){
+        div_element.find(".required").show();
+      }else {
+        div_element.find(".required").hide();
+      }
+      close_alert();
+    }
+  }
+
+  function close_alert(){
+    easyDialog.close();
+    removeShadow();
+  }
+</script>
+<div class="pop_top pop_icon pop_iconTitle">
+  <p class="pop_title">编辑<span class="chang_span"><%= @type%></span></p>
+      <a href="javascript:close_alert();" class="pop_colse pop_icon pop_iconColse" data-dismiss="modal" aria-hidden="true"></a>
+  </div>
+  <div class="pop_content" id="<%= @id%>_content">
+  <form class="newlet_form">
+    <div class="pop_form_text">
+      <p class="pop_form_font"><label>文字：</label><input type="text"  class="newlet_text"/></p>
+      <p class="newlet-p"><span>必填：</span><input type="radio" class="newlet_rad-a" <%= "checked" if @must == "0"%> id="newlet_rad-a" name="newlet_radio" value="0"/><label for="newlet_rad-a">是</label><input type="radio"  class="newlet_rad-b" id="newlet_rad-b" <%= "checked" if @must == "1"%> name="newlet_radio" value="1"/><label for="newlet_rad-b">否</label></p>
+    </div>
+    <div class="newlet_btn bgmg25">
+    <div class="letBtn"><a href="javascript:submit_must('<%= @id%>')" class="letBtn_a">确定</a><a href="javascript:close_alert()" class="letBtn_b" data-dismiss="modal" aria-hidden="true">取消</a></div>
+    <div class="clearBoth"></div>
+  </div>  
+  </form>  
+</div>

@@ -1,0 +1,31 @@
+<div class="conLt_middle <%= 'evencolor' if i%2 != 0%>" onmouseover="Funcard('<%= user.id%>')">
+  <div class="middle_tp" >
+    <div   class="adminLeft namePic ">
+      <a href="javascript:void(0)" class="users_card">
+        <img src="<%= user.sns_uimg %>">
+        <input type="hidden" id="sns_uname_<%= user.id%>" value="<%= user.sns_uname%>"/>
+        <input type="hidden" id="sns_uimg_<%= user.id%>" value="<%= user.sns_uimg%>"/>
+        <input type="hidden" id="location_<%= user.id%>" value="<%= user.location%>"/>
+        <input type="hidden" id="fans_<%= user.id%>" value="<%= user.fans%>"/>
+        <input type="hidden" id="friends_<%= user.id%>" value="<%= user.friends%>"/>
+        <input type="hidden" id="statuses_<%= user.id%>" value="<%= user.statuses%>"/>
+        <input type="hidden" id="description_<%= user.id%>" value="<%= user.description%>"/>
+        <input type="hidden" id="tag_<%= user.id%>" value="<%= user.label%>"/>
+        <input type="hidden" id="remark_<%= user.id%>" value="<%= user.remark%>"/>
+        <input type="hidden" id="sns_uid_<%= user.id%>" value="<%= user.sns_uid%>"/>
+
+      </a>
+    </div>
+    <div class="adminLeft midName ">
+      <a href="http://weibo.com/u/<%= user.sns_uid %>?from=profile" class="users_card" target="_blank"><%= user.sns_uname %></a>
+      <div class=" magT4" style="display: inline-block;"> <%= user_type(user.verified_type) %></div>
+    </div>
+  </div>
+  <div class="mid_add"><span class="mid_add_span"><img src="/assets/pop.png"></span><%= user.location %></div>
+  <div class="mid_pop">粉丝数：<%= user.fans %></div>
+  <div>
+    <a href="javascript:void(0)" class="mid_add-a">
+      <%= format_friend(SinaClient.attention_info(@company.cid, user.sns_uid, @user.sns_token))%>
+    </a>
+  </div>
+</div>

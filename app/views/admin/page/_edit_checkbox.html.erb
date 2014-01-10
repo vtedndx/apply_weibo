@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  function submit_checkbox(id){
+    var ra_val = $("#<%= @id%>_content").find("input[name='newlet_radio']:checked").val();
+    var div_element = $("#div_"+id)
+    var content = $("#<%= @id%>_content");
+    var div_value = content.find(".newlet_text").val();
+    if(div_value != "" && div_value.length > 12){
+      alert("对不起，名称不能超过12个字");
+    }else {
+      div_element.find("#"+id+"_must").val(ra_val);
+      $(".letBtn_b").click();
+      div_element.find("#"+id+"_title").val(div_value);
+      div_element.find(".requisitionLabel_text").html(div_value);
+      var objs = $("#<%= @id%>_content").find(".choose_text");
+      var text = "";
+      var values = $("#values_<%= @id%>");
+      var value_inputs = $("#value_inputs_<%= @id%>");
+      values.html("");
+      value_inputs.html("");
+      for(var i = 0;i < objs.length;i ++){
+        text = objs.eq(i).val();
+        values.append('<input type="hidden" name="list[<%= @id%>]value[]" class="values" value="'+text+'"/>');
+        value_inputs.append('<label class="requisitionLabel requisitioncheckbox"><input type="checkbox" class="requisitionFind" name="iluopan" />'+text+'</label>  ');
+      }
+      div_element.find("#<%= @id%>_size").val($(".data_text").val());
+
+      var a_href = div_element.find(".icon_editor_model").attr("href");
+      div_element.find(".icon_editor_model").attr("href", a_href.replace("must=<%= @must%>", "must="+ra_val));
+      if(ra_val == "0"){
+        div_element.find(".required").show();
+      }else {
+        div_element.find(".required").hide();
+      }
+      close_alert();
+    }
+    
+  }
+
+  function close_alert(){
+    easyDialog.close();
+    removeShadow();
+  }
+
+  function add_value(){
+    var content = $("#<%= @id%>_content");
+    var checkboxs = content.find(".checkboxs");
+    var leng = parseInt(content.find("#length").val());
+    checkboxs.append('<p class="pop_form_font clone_checkbox" id="p_'+leng+'"><span class="cho_span"><input type="text"  class="choose_text" value="" /></span><a href="javascript:del_value(\''+leng+'\');" class="cho_span cho_spanpic"></a></p>');
+    content.find("#length").val(leng+1);
+  }
+
+  function del_value(i){
+    var content = $("#<%= @id%>_content");
+    content.find("#p_"+i).detach();
+  }
+</script>
+<div class="pop_top pop_icon pop_iconTitle">
+    <p class="pop_title">编辑复选</p>
+      <a href="javascript:close_alert();" class="pop_colse pop_icon pop_iconColse" data-dismiss="modal" aria-hidden="true"></a>
+  </div>
+  <div class="pop_content" id="<%= @id%>_content">
+  <form class="newlet_form">
+    <input type="hidden" id="length"/>
+    <div class="pop_form_text">
+      <p class="pop_form_font"><label>文字：</label><input type="text"  class="newlet_text"/></p>
+      <a href="javascript:add_value()" class="cho-a J_add_checkbox"><img src="/assets/chosBtn.jpg"></a>
+      <div class="checkboxs">      
+
+      </div>
+      <div class="clearBoth"></div>
+      <p class="pop_form_font"><label>条件：</label><input type="text"  class="data_text" /><label class="text_lab">请填写必选项的数目</label></p>
+       <p class="newlet-p"><span>必填：</span><input type="radio" <%= "checked" if @must == "0"%> class="newlet_rad-a" checked="checked" id="newlet_rad-checkbox1" name="newlet_radio" value="0"/><label for="newlet_rad-checkbox1">是</label><input type="radio" <%= "checked" if @must == "1"%> class="newlet_rad-b" id="newlet_rad-checkbox2" name="newlet_radio" value="1"/><label for="newlet_rad-checkbox2">否</label></p>
+    </div>
+    <div class="newlet_btn">
+      <div class="letBtn"><a href="javascript:submit_checkbox('<%= @id%>')" class="letBtn_a">提交</a><a href="javascript:close_alert()" class="letBtn_b" data-dismiss="modal" aria-hidden="true">关闭</a></div>
+      <div class="clearBoth"></div>
+  </div>  
+  </form>  
+</div>

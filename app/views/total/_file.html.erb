@@ -1,0 +1,8 @@
+<div class="requisitionModel J_images_upload">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+  <p><input type="text" class="abc" readonly="true" id="abc<%= id%>"><a class="weibo_upbtn_pic" href="javascript:;"><input type="file" onchange="document.getElementById('abc<%= id%>').value=this.value" size="3" name="list[<%= id%>]value" tabindex="3" class="filePrew"></a></p>
+  <% if hash["must"] == "0"%>
+    <span class="required">*</span>
+  <% end %>
+  <input type="hidden" name="list[<%= id%>]type" value="file"/>
+</div>

@@ -1,0 +1,7 @@
+$("#apply_td_<%= @apply_id%>").html('<input type="radio" onclick="update_apply_id(<%= @apply_id%>)" name="radioBox" checked="" id="apply_radio_<%= @apply_id%>">');
+$("#open_close_<%= @apply_id%>").attr("href", '<%= manager_link("/admin/home/close_apply/#{@apply_id}")%>').html("关闭");
+
+<% if !@old_id.blank?%>
+	$("#apply_radio_<%= @old_id%>").removeAttr("checked");
+	$("#open_close_<%= @old_id%>").attr("href", '<%= manager_link("/admin/home/open_apply/#{@old_id}")%>').html("开启");
+<% end %>

@@ -1,0 +1,25 @@
+<div class="adminBox">
+  <div class="adminBox_tp">
+  <p class="adminBox_tp_text"><span class="adminBox_tp_iconRemind">*</span>点击发布名单按钮之后，该名单即刻在前台展示，请慎重使用哦！</p>
+  <div class="adminBox_tp_rt adminRight">
+    <%= link_to "发布该名单", manager_link("/admin/list/release"), :class => "admin_a-Col J_new_requisition", :remote => true%>
+  </div>
+  </div><!--adminBox_tp end-->
+  <div class="adminBox_mid_tb">
+  <table cellpadding="0" cellspacing="0" class="Box_table">
+    <thead>
+      <tr class="Box_table_tr">
+      <th width="620" class="text_algen_left ">微博ID</th>
+
+      <th width="100">操作</th>   
+    </tr>
+    </thead>
+    <tbody>
+      <% @lists.each do |list|%>
+        <%= render :partial => "/admin/list/one_list", :locals => {:list => list} %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @lists%>
+  </div>
+</div><!--adminBox end-->

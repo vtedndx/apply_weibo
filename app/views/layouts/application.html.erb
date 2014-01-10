@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apply</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script src="http://js.t.sinajs.cn/t4/enterprise/js/public/appframe/client.js?version="></script>
+    <script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
+  </head>
+  <body>
+    <%= render :partial => "/total/mem_scroll" %>
+    <div class="requisitionContainer" style="<%= @apply.get_config("height") if @apply%> <%= "background-image: url(#{@apply.img_url.blank? ? "/assets/bg.jpg" : @apply.img_url });" if @apply && @apply.get_config("img_show") == "1"%>">
+      <%= yield %>
+      <input type="hidden" id="current_url" name="current_url" value="<%= @current_url.blank? ? @weibo_root : @current_url%>"/>
+    </div>
+    <div id="biaoqing"><%= render :partial => "/total/biaoqing" %></div>
+    <% #分享 %>
+    <div id="pop_share" class="pop pop_share"></div>
+  </body>
+
+</html>
+

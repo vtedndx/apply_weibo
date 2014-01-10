@@ -1,0 +1,19 @@
+
+var theTop = parseInt($('#memScrollTop').attr('viewMiddleTop')) ;
+
+easyDialog.open({
+  container : 'pop_share',
+  drag : true,
+  //lock : false,
+  fixed : true,
+  overlay : true,
+  follow : 'memScrollTop',
+  followX : 141,
+  followY : theTop 
+});
+
+
+createShadow();
+
+
+$("#pop_share").html("<%= escape_javascript( render :partial => "/total/share_form", :locals => {:share_content => @share_content, :company => @company, :apply => @apply}) %>");

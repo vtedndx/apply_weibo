@@ -1,0 +1,23 @@
+<div class="requisitionModel J_gender" id="div_<%= id%>" onMouseOut="in_element('<%= id%>')" onMouseOver="out_element('<%= id%>')">
+	<input type="hidden" name="list[<%= id%>]type" value="sex"/>
+	<input type="hidden" name="list[<%= id%>]must" id="<%= id%>_must" value="<%= hash.blank? ? 0 : hash["must"]%>"/>
+	<input type="hidden" name="list[<%= id%>]title" value="性别"/>
+	<p class="requisitionLabel_text text_color">性别：</p>
+	<label class="requisitionLabel mr20" >
+		<input type="radio" class="requisitionGender"  name="gender" />男
+	</label>
+	<label class="requisitionLabel mr20" >
+		<input type="radio" class="requisitionGender" name="gender" />女
+	</label>
+	<% if hash.blank? || hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% else %>
+		<span class="required" style="display: none;">*</span>
+	<% end %>
+	<div class="addOperating">
+		<div class="requisitionModel_bg"></div>
+		<span class="iconRequisition icon_move_model"></span>
+		<a href="javascript:del_element('<%= id%>');" class="iconRequisition icon_delete_model J_delete_model"></a>
+		<a href="<%= manager_link("/admin/page/edit_must/#{id}?type=sex&must=#{hash.blank? ? 0 : hash["must"]}")%>" data-remote="true" class="iconRequisition icon_editor_model J_editor_gender">编辑</a>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<% if !@lists.blank?%>
+	<div class="index_username_id">
+	  <div class="username_top">入选用户微博ID</div>
+	  <div class="username_idnamebox">
+	    <% @lists.each do |list|%>
+	      <div class="username_id"><span class="username_span_img"><img src="<%= list.user.sns_uimg%>"></span><span class="username_span_name"><%= list.user.sns_uname%></span></div>
+	    <% end %>
+	  </div>
+	  <div class="clearBoth"></div> 
+	</div>  
+<% end %>

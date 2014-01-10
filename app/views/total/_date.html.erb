@@ -1,0 +1,20 @@
+<div class="requisitionModel J_name">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+	<label class="requisitionLabel">
+		<input type="text" class="requisitionName input_text" id="date_<%= id%>" name="list[<%= id%>]value">
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="date"/>
+</div>
+<script type="text/javascript">
+	var requisitionDate=$('#date_<%= id%>');
+	requisitionDate.datepicker({
+				dateFormat:"yy-mm-dd",  //设置日期格式
+				changeMonth:true,   //是否提供月份选择
+				changeYear:true,    //是否提供年份选择
+				dayNamesMin: ['日','一','二','三','四','五','六'],  //日期简写名称
+				monthNamesShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']  //月份简写名称	
+			});
+</script>

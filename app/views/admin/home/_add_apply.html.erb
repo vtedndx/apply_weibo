@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  function submit_apply(){
+    if($(".newlet_text").val() == ""){
+      alert("请输入申请标题，最多不超过25个字");
+    }else if($(".newlet_text").val().length > 25){
+      alert("请输入申请标题0-25个字之间");
+    }else {
+      $(".newlet_form").submit();
+    }
+  }
+</script>
+<div class="pop_bg"></div>
+<div class="pop_top pop_icon pop_iconTitle">
+<p class="pop_title">新建申请</p>
+<a href="javascript:close_easy_dialog();" class="pop_colse pop_icon pop_iconColse"></a>
+</div>
+<div class="pop_content">
+<%= form_tag manager_link("/admin/home/submit_apply"), :class => "newlet_form", :remote => true do %>
+  <div class="pop_form_text">
+      <p class="pop_form_font"><label>标题：</label><input type="text" name="title" class="newlet_text holderContent" holder_content="请输入申请标题，最多不超过25个字" /></p>
+      <p class="newlet-p"><span>申请成功后分享：</span><input type="radio" name="share" value="0" class="newlet_rad-a" checked="checked" id="newlet_rad-application1" /><label for="newlet_rad-application1">是</label><input type="radio" name="share" value="1" class="newlet_rad-b" id="newlet_rad-application2" /><label for="newlet_rad-application2">否</label></p>
+  </div>
+  <div class="newlet_btn">
+    <div class="letBtn">
+      <a href="javascript:void(0)" onclick="submit_apply();" class="letBtn_a">提交</a>
+      <a href="javascript:close_easy_dialog();" class="letBtn_b">关闭</a>
+    </div>
+    <div class="clearBoth"></div>
+  </div>
+<% end %>
+
+</div>

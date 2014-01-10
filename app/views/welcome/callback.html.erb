@@ -1,0 +1,19 @@
+<% if @token_error %>
+	<script type="text/javascript">
+		// only weibo;
+		alert("sorry,授权出错");
+
+		parent.$(".loginWin").hide();
+	</script>
+<% else  %>
+	<script type="text/javascript">
+		// only weibo;
+		parent.$(".loginWin").hide();
+		var targetUrl = parent.$("#current_url").val();
+		// window.parent.parent.location = targetUrl;
+		window.top.location.href = targetUrl;
+
+
+	</script>
+
+<% end %>

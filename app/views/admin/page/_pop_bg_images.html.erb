@@ -1,0 +1,31 @@
+<%= render :partial => "/admin/page/uploadify_picture" %>
+<div class="pop_bg"></div>
+<div class="pop_top pop_icon pop_iconTitle">
+  <p class="pop_title">背景图设置</p>
+  <a href="javascript:close_back('<%= @apply.get_config("img_show")%>');" class="pop_colse pop_icon pop_iconColse"></a>
+</div>
+<div class="pop_content">
+  <%= form_tag manager_link("/admin/page/submit_back_img"), :class => "newlet_form" do %>
+  <div class="admin_page_main">
+    <div class="back_box">
+    <div class="back_box-tp">
+    <span class="back_box-spa">背景图要求：请您上传jpg/png/gif格式的图片，大小不超过2M！</span>
+    <input type="file" name="back_file" id="back_file"/>
+    <input type="hidden" id="old_url" value="<%= @apply.backdrop_id.blank? ? "/assets/bg.jpg" : @apply.get_image("back")%>"/>
+    <input type="hidden" id="file_id" name="file_id" value=""/>
+    <p id="fileQueue"></p>
+    </div>
+    <div class="clearBoth"></div> 
+    </div>
+  </div>
+  <div class="showstyle">
+    内容超过背景图高度展示方式：
+    <label class="extrude"><input type="radio" value="0" onclick="check_radio('0');" <%= "checked" if @apply.get_config("img_show") == "0"%> name="imgshowstyle"/>拉伸</label>
+    <label class="tile"><input type="radio" value="1" onclick="check_radio('1');" <%= "checked" if @apply.get_config("img_show") == "1"%> name="imgshowstyle"/>平铺</label>
+  </div>
+  <div class="newlet_btn bgmg25">
+    <div class="letBtn"><a href="javascript:submit_back();" class="letBtn_a">提交</a><a href="javascript:close_back('<%= @apply.get_config("img_show")%>');" class="letBtn_b">关闭</a></div>
+    <div class="clearBoth"></div>
+  </div>
+  <% end %>
+</div><!--pop_content-->

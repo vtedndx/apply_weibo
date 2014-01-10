@@ -1,0 +1,9 @@
+<div class="requisitionModel J_attention_weibo">
+	<label class="requisitionLabel">
+		<input type="checkbox" class="checkbox_attention" name="list[<%= id%>]value" <%= "checked" if hash["checked"] == "0"%>><%= hash["text"]%>
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="attention"/>
+</div>

@@ -1,0 +1,10 @@
+<div class="requisitionModel J_checkbox">
+	<p class="requisitionLabel_text text_color"><%= hash["title"]%></p>
+	<% hash["value"].each_with_index do |val, i|%>
+		<label class="requisitionLabel requisitioncheckbox"><input type="checkbox" class="requisitionFind" name="list[<%= id%>]value[]" value="<%= val%>"><%= val%></label>
+	<% end %>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="checkbox"/>
+</div>

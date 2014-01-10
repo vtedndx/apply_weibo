@@ -1,0 +1,149 @@
+<script type="text/javascript">
+  function close_dialog(){
+    $("#easyDialogBox").hide();
+    removeShadow();
+  }
+  $('textarea.share_textarea').maxlength({
+      'feedback' : '.number',
+      'useInput' : true
+  });
+
+  $('#biaoqing_jc a img').click(function(){
+    $('#share_textarea').val($('#share_textarea').val()+'['+$(this).attr('alt')+']');
+    $('#share_textarea').change();
+    $("#biaoqing_jc").hide();
+  });
+</script>
+<%
+  begin
+    friends = SinaClient.friends_bilateral(@user.sns_token, {:uid => @user.sns_uid})
+  rescue Exception => e
+    friends = []
+  end
+  begin
+    fans = SinaClient.get_followers(@user.sns_uid, @user.sns_token, 1) if friends["users"].blank?
+  rescue Exception => e
+    fans = []
+  end
+%>
+
+<div class="pop_bg"></div>
+<div class="pop_top pop_icon pop_iconTitle">
+  <p class="pop_title">分享</p>
+  <a href="javascript:void(0);" onclick="close_dialog()" class="pop_colse pop_icon pop_iconColse"></a>
+</div>
+<div class="pop_content">
+
+  <%= form_tag resession_link("/ajax/submit_share"), class: "pop_form", remote: true do %>
+
+    <div class="pop_form_text">
+      <p class="pop_form_desc">恭喜您提交申请成功!</p>
+      <span class="textareaNumber pop_icon pop_iconTextareaNumber"><b class="number"></b></span>
+    </div>
+    <textarea class="share_textarea holderContent" id="share_textarea" holder_content="分享内容" name="share_content"><%= @share_content %></textarea><input type="hidden" name="maxlength" value="140" />
+    <div class="Img_foter">
+      <h3>点头像@您的好友：</h3>
+      <div class="carousel_box">
+        <div class="carousel">
+          <ul>
+            <% if !friends["users"].blank? %>
+              <% friends["users"].each do |fri|%>
+                <li>
+                  <a href="javascript:void(0);" onclick="click_fir('<%= fri["idstr"]%>')">
+                    <img src="<%= fri["profile_image_url"]%>" />
+                    <input type="checkbox" id="abc_<%= fri["idstr"]%>"/>
+                    <input type="hidden" value="<%= fri["idstr"]%>" id="id_<%= fri["idstr"]%>" class="id"/>
+                  </a><p id="friend_<%= fri["idstr"]%>"><%= fri["screen_name"]%></p>
+                </li>
+              <% end %>
+            <% elsif !fans.blank?%>
+              <% fans.each do |fri|%>
+                <li>
+                  <a href="javascript:void(0);" onclick="click_fir('<%= fri["idstr"]%>')">
+                    <img src="<%= fri["profile_image_url"]%>" />
+                    <input type="checkbox" id="abc_<%= fri["idstr"]%>"/>
+                    <input type="hidden" value="<%= fri["idstr"]%>" id="id_<%= fri["idstr"]%>" class="id"/>
+                  </a>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div><!--carousel-->
+        <div class="carousel_pre_box hover_carousel_box  "><span class="icon_carousel carousel_pre"></span></div>
+        <div class="carousel_next_box hover_carousel_box "><span class="icon_carousel carousel_next"></span></div>
+        </div><!--carousel_box-->
+    </div><!--carousel_box-->
+    <div class="pop_form_operating">
+      <a href="javascript:void(0);" onclick="img_load(this)" class="expression pop_icon pop_iconExpression"></a>
+      <label class="weibo_label"><input type="checkbox" name="share_checkbox" checked class="weibo_checkbox" />同时关注企业微博</label>
+      <a href="javascript:void(0);" onclick="select_submit()" type="button" class="share_button pop_icon pop_iconshare">分享</a>
+    </div>
+
+   <% end %>   
+</div>
+<script type="text/javascript">
+/*轮播*/
+$(function(){
+  var DcarouselBox=$('.carousel_box'),Dcarousel=DcarouselBox.find('.carousel'),DcarouselUl=Dcarousel.find('ul'),DcarouselLiWidth=Dcarousel.find('li>a').width(),DcarouselNumLi=parseInt(Dcarousel.width()/(DcarouselLiWidth+6));DcarouselPre=DcarouselBox.find('.carousel_pre_box'),DcarouselNext=DcarouselBox.find('.carousel_next_box');
+  
+  
+  var DcarouselLi=DcarouselUl.find('li'),DcarouselLiA=DcarouselLi.find('a'),DcarouselLiNum=DcarouselLi.length,oIndex=0,timer;
+  DcarouselUl.width(DcarouselLiNum*(DcarouselLiWidth+6));
+  
+  
+  
+  DcarouselPre.click(function(){
+    
+    oIndex--;
+    if(oIndex==-1){
+      oIndex=DcarouselLiNum-DcarouselNumLi-1;
+    }
+    Fcarousel(oIndex)
+  });
+  
+  DcarouselNext.click(function(){
+    
+    oIndex++;
+    if(oIndex==DcarouselLiNum-DcarouselNumLi){
+      oIndex=0;
+    }
+    Fcarousel(oIndex);
+    
+  });
+  
+  function Fcarousel(oIndex){
+    
+    if(!DcarouselUl.is(':animated')){
+      
+      DcarouselUl.stop(false,true).animate({'left':-(oIndex*(DcarouselLiWidth+6))},500);  
+    }
+  }
+  
+  $('.hover_carousel_box').hover(function(){
+    $(this).addClass('carousel_active');
+  },function(){
+    $(this).removeClass('carousel_active');
+  });
+});
+
+function click_fir(id){
+  if($("#abc_"+id).attr("checked") == "checked"){
+    $("#abc_"+id).removeAttr("checked");
+    text = $("#share_textarea").val();
+    id = $("#id_"+id).val();
+    $("#share_textarea").val(text.replace(" @"+$("#friend_"+id).html(), ""));
+    $('#share_textarea').change();
+  }else {
+    $("#abc_"+id).attr("checked", "checked"); 
+    text = $("#share_textarea").val();
+    id = $("#id_"+id).val();
+    $("#share_textarea").val(text+" @"+$("#friend_"+id).html());
+    $('#share_textarea').change(); 
+  }
+}
+
+function select_submit() {
+  $(".pop_form").submit();
+}
+</script>
+

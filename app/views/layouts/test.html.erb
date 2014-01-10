@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+  <title>Apply</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <meta property="wb:webmaster" content="91b844118b3ee6f9" />
+  <%= csrf_meta_tags %>
+  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2531680919" type="text/javascript" charset="utf-8"></script>
+
+</head>
+	<body>
+<button id="wb_selector" type="button" ></button>
+<script type="text/javascript">
+  WB2.anyWhere(function(W){
+    W.widget.selector({
+        id : "wb_selector"
+    });
+});
+</script>
+	</body>
+</html>

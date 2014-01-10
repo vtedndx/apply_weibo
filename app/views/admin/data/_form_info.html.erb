@@ -1,0 +1,34 @@
+<% unless post.blank? %>
+  <% elements = post.content %>
+<% end %>
+<div class="conMid_bot <%= 'evencolor' if i%2 != 0%>">
+  <ul> 
+    <% if !@apply.get_config("list").blank? && !elements.blank?%>
+      <% @apply.get_config("list").each do |key, value| %>
+        <% if value["type"] == "file" && !elements[key].blank?  && !elements[key]["value"].blank?%>  
+          <%= render partial: '/admin/data/one_file', locals: { value: elements[key]["value"]} %>
+        <% elsif value["type"] == "checkbox" %>
+          <%= render partial: '/admin/data/one_file', locals: { key: elements[key]} %>
+        <% elsif value["type"] == "birthday"%>
+          <%= render partial: '/admin/data/one_birthday', locals: { key: elements[key]} %>
+        <% elsif value["type"] == "region" %>
+          <%= render partial: '/admin/data/one_region', locals: { key: elements[key]} %>
+        <% elsif value["type"] != "line" && value["type"] != "writing"%>
+          <% if value["type"] == "tel" %>
+            <% elements[key]["value"] = elements[key]["value"][0...11] unless elements[key].blank?%>
+          <% elsif value["type"] == "attention" && !elements[key].blank?%>
+            <% elements[key]["value"] = elements[key]["value"].blank? ? "未勾选" : "已勾选"%>
+          <% end %>
+          <li class="conMid_li"><%= elements[key]["value"] unless elements[key].blank? %></li>
+        <% end %>
+      <% end %>    
+    <% else %>
+      <li class="conMid_li"></li>
+      <li class="conMid_li"></li>
+      <li class="conMid_li"></li>
+      <li class="conMid_li"></li>
+      <li class="conMid_li"></li>
+    <% end %>
+  </ul>
+  <div class="clearBoth"></div>
+</div><!--conMid_bot end-->

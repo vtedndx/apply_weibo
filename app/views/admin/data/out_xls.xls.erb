@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">用户名</Data></Cell>
+      <% unless @apply.get_config("list").blank?  %>
+        <% @apply.get_config("list").each do |key, value| %>
+          <% if value["type"] != "line" && value["type"] != "writing"%>
+            <% if value["type"] == "attention"%>
+              <Cell><Data ss:Type="String"><%= value["text"].gsub(/[:：  ]*/, "") if value["text"]%></Data></Cell>
+            <% else %>
+              <Cell><Data ss:Type="String"><%= value["title"].gsub(/[:：  ]*/, "") if value["title"]%></Data></Cell>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </Row>
+    <% unless @pis.blank? %>
+      <% @pis.each do |pi| %>
+        <Row>
+        <Cell><Data ss:Type="String"><%= pi.user.sns_uname %></Data></Cell>
+        <% content = pi.content%>
+        <% unless @apply.get_config("list").blank?%>
+          <% @apply.get_config("list").each do |key, value| %>
+            <% if !content.blank? && !value.blank? && value["type"] != "line" && value["type"] != "writing" %>
+              <% if value["type"] == "file" && !content[key].blank? && !content[key]["value"].blank?%>   
+               <Cell><Data ss:Type="String"> <%= content[key]["value"][1]%></Data></Cell>
+              <% elsif value["type"] == "checkbox" && !content[key].blank? && !content[key]["value"].blank?%>
+                <% value = "" %>
+                <% content[key]["value"].each do |k| %>
+                  <% value = value + k + ";" %>
+                <% end %>
+               <Cell><Data ss:Type="String"> <%= value %></Data></Cell>
+              <% elsif value["type"] == "birthday" && !content[key].blank? && !content[key]["value"].blank? || value["type"] == "region" && !content[key].blank? && !content[key]["value"].blank?%>
+                <% value = "" %>
+                <% content[key]["value"].each do |val| %>
+                  <% if val == "all" || val == "选择" %>  
+                    <% val = "" %>
+                  <% end %>
+                  <% value = value + " " + val %>
+                <% end %>
+               <Cell><Data ss:Type="String"> <%= value %></Data></Cell>
+              <% else %>
+                <% if value["type"] == "attention" && !content[key].blank?%>
+                <%  content[key]["value"] = content[key].blank? ? "未勾选" : "已勾选"%>
+                <% end %>
+               <Cell><Data ss:Type="String"><%= content[key]["value"] if !content[key].blank? %></Data></Cell>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </Row>
+      <% end %>
+    <% end %>
+  </Table>
+  </Worksheet>
+</Workbook>
+

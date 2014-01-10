@@ -1,0 +1,69 @@
+
+/* 文件上传部分 */
+.feedback {position:absolute; top:0;left:0; z-index:1;}
+.loadingfeedback {position:absolute; top:0;left:0; z-index:20;width:100px;height:100px;background:#FFF7D3;}
+.ajaxUpload {position:absolute; top:35px;left:17px;z-index:10; width:70px;height:35px;  }
+.loading {margin-top:42px;margin-left:42px;}
+#upload3,#upload4{overflow:hidden; width:100px;height:100px;cursor:pointer;  background-color:#FFF7D3; border:1px solid #D2CBB5; display:inline-block;}
+#upload3{position:relative; top:0px; left:3px;}
+#upload4{position:relative; top:0px; left:3px;}
+
+
+/* 喜欢 喜欢数 */
+.like_already{ background-position:-35px -146px; position:relative; z-index:9;}
+.like_already:hover{ background-position:0px -146px; position:relative; z-index:9;}
+
+/* 文本输入框 */
+#container .zxbm>form .text{ width:100px; height:25px; }
+
+
+/* 评论调整 */
+.display_detail_comment {width: 758px;}
+.comment_button3{ width:51px; height:25px; border:0px;position:absolute; right:20px; bottom:-10px; background:url(/assets/release3.png) no-repeat; cursor:pointer;  float:right; }
+
+/* 个人页头像  */
+.avatar {overflow: hidden;}
+.person_face {width: 125px;}
+
+/*表情*/
+#biaoqing_jc,#biaoqing_jc_2 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 2px;
+    width: 290px;
+    z-index: 200;
+}
+#biaoqing_jc_t ,#biaoqing_jc_2 {
+    background: url("/assets/close.png") no-repeat scroll 260px 2px #F6F6F6;
+    border: 1px solid #FCFCFC;
+    color: #4265DE;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    margin-bottom: 3px;
+    padding-left: 5px;
+}
+.bq_img_box {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+}
+#can_dongg{ cursor:move;}
+#biaoqing_jc_t{ margin-bottom:0px;}
+
+
+/*Bargains_pagination*/
+#Bargains_pagination{ width:540px; float:left; margin-top:30px;}
+/*pagination*/
+.pagination {text-align: center; padding: 0.3em;cursor:pointer; display:inline-block; width:98%;  font-size:12px;}
+.pagination a, .pagination span, .pagination em {padding: 0.2em 0.5em; }
+.pagination .disabled {color: #C0C0C0; }
+.pagination .current {font-style: normal;font-weight: bold; background-color:#eb1972; color: #FFF; }
+.pagination a {color: #666;text-decoration: none; }
+.pagination a:hover, .pagination a:focus {border-color:#FF3C01;background: #eb1972;color: white; }
+.pagination {color: rgb(170, 170, 170);}
+.pagination .previous_page, .pagination .next_page {}
+.pagination .previous_page {margin-right: 1em; }
+.pagination .next_page {margin-left: 1em; }
+

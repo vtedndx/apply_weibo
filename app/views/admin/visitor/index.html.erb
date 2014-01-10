@@ -1,0 +1,29 @@
+
+<div class="adminBox">
+  <div class="adminBox_mid_tbbox">
+		  	<div class="likeer_avater">
+		  	  		<ul class="likeer_avater_ul">
+		  		  		<% @visitors.each do |vi| %>
+		  		  			<li class="likeer_avater_li"><a target="_blank" href="<%= vi.weibo_home %>" class="likeer_avater_a"><img src="<%= vi.sns_uimg.blank? ? Visitor.default_uimg : vi.sns_uimg %>" /></a></li>
+		  	  		  <% end %>                 
+		  	  		</ul>
+		  	  	</div>
+
+
+  </div>
+  
+  
+	 <%= paginate @visitors, :outer_window => 1 %>
+
+
+</div><!--adminBox end-->
+
+
+<style>
+	.likeer_avater{}
+	.likeer_avater_ul{ margin-left:-9px;}
+	.likeer_avater_li{ float:left; margin:10px 0 0 5px; display:inline;}
+	.likeer_avater_a{}
+	.likeer_avater_a img{ width:55px;}
+
+</style>

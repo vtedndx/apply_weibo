@@ -1,0 +1,71 @@
+<script type="text/javascript">
+  function update_apply_id(id){
+    $.ajax({
+      url: "<%= manager_link('/admin/home/show_apply')%>&id="+id,
+      dataType: "script"
+    });
+  }
+</script>
+<div class="adminBox">
+  <div class="adminBox_tp">
+    <div class="adminBox_tp_lt adminLeft"><span class="icon icon_application_a"></span><span class="current_application">申请列表</span></div>
+    <div class="adminBox_tp_rt adminRight">
+      <%= link_to "＋新建申请", manager_link("/admin/home/add_apply"), :class => "admin_a-Col J_new_requisition", :remote => true%>
+    </div>
+  </div><!--adminBox_tp end--> 
+  <div class="clearBoth"></div>    
+  <div class="adminBox_mid_tbbox">
+    <table cellpadding="0" cellspacing="0" class="Box_table">
+      <tr class="Box_table_tr">
+        <th width="90">前台展示</th>
+        <th width="299">申请单名称</th> 
+        <th width="110">申请人数</th> 
+        <th width="219">操作</th>   
+      </tr>
+      <% @applys.each do |apply|%>
+        <%= render :partial => "/admin/home/one_apply", :locals => {:apply => apply} %>
+      <% end %>
+    </table>
+  </div>
+  <%= paginate @applys%>
+  <% if @applys.blank?%>
+    <div class="no_data"><img src="/assets/no_data.png" /></div>
+    <div class="adminBox_bot_ft bot-pad">暂时还没有任何申请单哦，快来建立您的第一个申请吧！</div>
+    <div class="adminBox_bot_btn admin_btn_pad">
+      <%= link_to "", manager_link("/admin/home/add_apply"), :remote => true, :class => "adminBox_btn J_new_requisition"%>
+    </div>
+  <% end %>
+</div><!--adminBox end-->
+<script type="text/javascript">
+$(function(){
+  var Box_table_trb=$('.Box_table_trb');
+  Box_table_trb.each(function(index, element) {
+        var Box_table_trb_td=$(this).find('td:eq(1)');
+    Box_table_trb_td.css({'text-align':'left','padding-left':'10px'});
+    Box_table_trb_td.text(subString(Box_table_trb_td.text(),40))
+    });
+function subString(str, len) { 
+var newLength = 0; 
+var newStr = ""; 
+var chineseRegex = /[^\x00-\xff]/g; 
+var singleChar = ""; 
+var strLength = str.replace(chineseRegex,"**").length; 
+for(var i = 0;i < strLength;i++) { 
+singleChar = str.charAt(i).toString(); 
+if(singleChar.match(chineseRegex) != null) { 
+newLength += 2; 
+}else { 
+newLength++; 
+} 
+if(newLength > len) { 
+break; 
+} 
+newStr += singleChar; 
+} 
+if(strLength > len) { 
+newStr += "..."; 
+} 
+return newStr; 
+}
+});
+</script>

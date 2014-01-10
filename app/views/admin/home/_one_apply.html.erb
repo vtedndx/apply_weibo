@@ -1,0 +1,18 @@
+<tr class="Box_table_trb" id="apply_<%= apply.id%>">
+  <td id="apply_td_<%= apply.id%>">
+    <input type="radio" id="apply_radio_<%= apply.id%>" name="radioBox" onclick="update_apply_id(<%= apply.id%>)" <%="checked" if @company.get_config("apply_id") == apply.id%>/>
+  </td>
+  <td id="apply_name_<%= apply.id%>"><%= truncate_utf apply.name, 25%></td>
+  <td><%= RedisClient.get_apply_to_user_count(@company.id, apply.id)%></td>
+  <td>
+  	<a target="_blank" href="<%= encode_url("/apply/index?apply_id=#{apply.id}&source=0")%>">预览</a><span>|</span>
+  	<a href="<%= weibo_manager_link("/admin/page/index?apply_id=#{apply.id}")%>">管理</a><span>|</span>
+    <%= link_to "编辑", manager_link("/admin/home/edit_apply/#{apply.id}"), :class => "J_editor_requisition", :remote => true%><span>|</span>
+    <% if @company.get_config("apply_id") == apply.id%>
+      <%= link_to "关闭", manager_link("/admin/home/close_apply/#{apply.id}"), :id => "open_close_#{apply.id}", :remote => true%><span>|</span>
+    <% else%>
+      <%= link_to "开启", manager_link("/admin/home/open_apply/#{apply.id}"), :id => "open_close_#{apply.id}", :remote => true%><span>|</span>
+    <% end %>
+  	<%= link_to "删除", manager_link("/admin/home/del_apply/#{apply.id}"), :remote => true%>
+  </td>
+</tr>

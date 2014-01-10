@@ -1,0 +1,23 @@
+<div class="requisitionModel J_region" id="div_<%= id%>">
+	<p class="requisitionLabel_text text_color">地区：</p>
+	<label class="requisitionLabel"  >
+		<select class="province_select" name="list[<%= id%>]value[]" id="J_province_<%= id%>">
+			<option value="不限">不限</option>
+		</select>
+	</label>
+	<label class="requisitionLabel" >
+		<select class="city_select ml20" name="list[<%= id%>]value[]" id="J_city_<%= id%>">
+			<option value="不限">不限</option>
+		</select>
+	</label>
+	<% if hash["must"] == "0"%>
+		<span class="required">*</span>
+	<% end %>
+	<input type="hidden" name="list[<%= id%>]type" value="region"/>
+</div>
+<script type="text/javascript">
+	var J_region=$("#div_<%= id%>"),thiscareatRegionProvince=J_region.find('.province_select'),thiscareatRegionCity=J_region.find('.city_select');
+
+  J_region.careatProvinceCities(thiscareatRegionProvince,thiscareatRegionCity);
+
+</script>
